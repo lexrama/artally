@@ -15,6 +15,7 @@ import * as WebBrowser from "expo-web-browser";
 import FeedItem from '../components/FeedItem';
 import { FeedProps, FeedItemData } from "../types";
 
+
 export default function Feed(props: FeedProps) {
   const defaultProps = { articles: [] };
   {/*const Thread = props.Thread;*/}
@@ -52,6 +53,7 @@ export default function Feed(props: FeedProps) {
   }
 
 }
+
 
 const styles = StyleSheet.create({
 

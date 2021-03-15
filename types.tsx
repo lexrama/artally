@@ -90,6 +90,12 @@ export type NotificationProps = {
   navigation: undefined;
 }
 
+export type UserIconProps = {
+  user: User;
+  size: string; // "small" or "large"
+  navigation: undefined;
+}
+
 export type ScreenHeaderProps = {
   title: string;
   back: boolean;
