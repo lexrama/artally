@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, SafeAreaView, ActivityIndicator } from "react-n
 import Feed from '../components/Feed';
 import FeedItem from '../components/FeedItem';
 import { HomeFeedScreenProps } from "../types";
-import { feedData } from '../constants/FeedData';
+import { feedData } from '../data/FeedData';
 
 export default function HomeFeedScreen({ navigation }: HomeFeedScreenProps) {
     const [loading, setLoading] = useState(false);
