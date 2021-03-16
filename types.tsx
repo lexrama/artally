@@ -103,13 +103,13 @@ export type ScreenHeaderProps = {
 }
 
 export type FeedProps = {
-  feedItems: FeedItemData[],
+  feedItems: Post[], // was FeedItemData[]
   loading: boolean,
   navigation: any;
 }
 
 export type FeedItemProps = {
-  item: FeedItemData;
+  post: Post; // was item: FeedItemData;
   navigation: any;
 }
 
@@ -169,7 +169,7 @@ export type HomeScreenProps = {
 }
 
 export type ThreadScreenProps = {
-  item: FeedItemData;
+  post: Post; // was FeedItemData
   navigation: any;
 }
 
@@ -187,3 +187,5 @@ export type FeedItemData = {
   description: string,
   image: string,
 }
+
+export type firestore = any;

@@ -6,9 +6,7 @@ import { Text, View } from '../components/Themed';
 import Feed from '../components/Feed';
 import { ThreadScreenProps } from '../types';
 
-export default function ThreadScreen(props: ThreadScreenProps) {
-    const item = props.item;
-
+export default function ThreadScreen({post, navigation}: ThreadScreenProps) {
     return (
         <View style={styles.container}>
             <View style={styles.comment}>
