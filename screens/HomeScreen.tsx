@@ -1,12 +1,12 @@
 
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, View, SafeAreaView, ActivityIndicator } from "react-native";
+import { StyleSheet, Text, View, SafeAreaView, ActivityIndicator, Button } from "react-native";
 import Feed from '../components/Feed';
 import FeedItem from '../components/FeedItem';
-import { HomeFeedScreenProps } from "../types";
+import { HomeScreenProps } from "../types";
 import { feedData } from '../data/FeedData';
 
-export default function HomeFeedScreen({ navigation }: HomeFeedScreenProps) {
+export default function HomeFeedScreen({ navigation }: HomeScreenProps) {
     const [loading, setLoading] = useState(false);
     const [articles, setArticles] = useState([]);
     const [searchText] = useState("");

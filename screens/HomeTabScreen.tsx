@@ -3,9 +3,8 @@ import { StyleSheet } from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
-import Header from '../components/Header';
 import Feed from '../components/Feed';
-import HomeFeedScreen from '../screens/HomeFeedScreen';
+import HomeFeedScreen from './HomeScreen';
 import ThreadScreen from '../screens/ThreadScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';

@@ -54,63 +54,63 @@ export type Comment = {
 
 export type ProfileHeaderProps = {
   user: User;
-  navigation: undefined;
+  navigation: any;
 }
 
 export type PostHeaderProps = {
   user: User; // user who posted it
   post: Post;
-  navigation: undefined;
+  navigation: any;
 }
 
 export type PostFooterProps = {
   post: Post;
-  navigation: undefined;
+  navigation: any;
 }
 
 export type TagProps = {
   text: string;
-  navigation: undefined;
+  navigation: any;
 }
 
 export type TagArrayProps = {
   tags: string[];
-  navigation: undefined;
+  navigation: any;
 }
 
 export type StatusTagProps = {
   status: number;
-  navigation: undefined;
+  navigation: any;
 }
 
 export type NotificationProps = {
   post: Post;
   text: string;
   timestamp: string;
-  navigation: undefined;
+  navigation: any;
 }
 
 export type UserIconProps = {
   user: User;
   size: string; // "small" or "large"
-  navigation: undefined;
+  navigation: any;
 }
 
 export type ScreenHeaderProps = {
   title: string;
   back: boolean;
-  navigation: undefined;
+  navigation: any;
 }
 
 export type FeedProps = {
   feedItems: FeedItemData[],
   loading: boolean,
-  navigation: undefined;
+  navigation: any;
 }
 
 export type FeedItemProps = {
   item: FeedItemData;
-  navigation: undefined;
+  navigation: any;
 }
 
 
@@ -121,6 +121,9 @@ export type FeedItemProps = {
 export type RootStackParamList = {
   Root: undefined;
   NotFound: undefined;
+  Thread: undefined;
+  Profile: undefined;
+  Notifications: undefined;
 };
 
 export type BottomTabParamList = {
@@ -157,17 +160,17 @@ export type MessagesTabParamList = {
   MessagesTabScreen: undefined;
 };
 
-export type ProfileTabParamList = {
-  ProfileTabScreen: undefined;
+export type MyProfileTabParamList = {
+  MyProfileTabScreen: undefined;
 };
 
-export type HomeFeedScreenProps = {
-  navigation: undefined;
+export type HomeScreenProps = {
+  navigation: any;
 }
 
 export type ThreadScreenProps = {
   item: FeedItemData;
-  navigation: undefined;
+  navigation: any;
 }
 
 
