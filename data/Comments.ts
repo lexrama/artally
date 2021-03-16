@@ -21,7 +21,7 @@ export type Comment = {
 }
 */
 
-export const comments = [
+export const Comments = [
     { // feel free to edit/delete this example, it's just for reference
         id: '100',
         post: '000',

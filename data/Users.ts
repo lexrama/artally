@@ -12,7 +12,7 @@ export type User = {
 }
 */
 
-export const users = [
+export const Users = [
     { // feel free to edit/delete this example, it's just for reference
         username: "nifty_salamander",
         icon: require("../assets/images/avatar.png"),

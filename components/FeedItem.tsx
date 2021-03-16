@@ -17,16 +17,16 @@ import ThreadScreen from "../Screens/ThreadScreen";
 import { FeedItemProps } from "../types";
 
 
-export default function FeedItem(props: FeedItemProps) {
+export default function FeedItem({post, navigation}: FeedItemProps) {
   return (
-    <TouchableOpacity style={styles.listItem} onPress={() => props.navigation.navigate('Thread', props)}>
+    <TouchableOpacity style={styles.listItem} onPress={() => navigation.navigate('Thread', {post, navigation})}>
       <View style={styles.header}>
         <Image source={require("../assets/images/avatar.png")} />
-        <Text style={styles.username}>{props.item.username}</Text>
+        <Text style={styles.username}>{post.user}</Text>
       </View>
       <Image source={require("../assets/images/togepi.jpeg")} />
-      <Text style={styles.title}>{props.item.title}</Text>
-      <Text style={styles.body}>{props.item.description}</Text>
+      <Text style={styles.title}>{post.title}</Text>
+      <Text style={styles.body}>{post.description}</Text>
       <Text style={styles.tags}>#tag1  #tag2  #tag3  #tag4  #tag5</Text>
     </TouchableOpacity>
   );

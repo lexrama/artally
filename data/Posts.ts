@@ -17,7 +17,7 @@ export type Post = {
 }
 */
 
-export const posts = [
+export const Posts = [
     { // feel free to edit/delete this example, it's just for reference
         id: "000",
         user: "nifty_salamander",

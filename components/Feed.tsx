@@ -13,28 +13,30 @@ import {
 } from "react-native";
 import * as WebBrowser from "expo-web-browser";
 import FeedItem from '../components/FeedItem';
-import { FeedProps, FeedItemData } from "../types";
+import { FeedProps, FeedItemData, Post, User, Comment } from "../types";
+import firebase from "firebase";
+import firestore from "../firebase";
 
 
-export default function Feed(props: FeedProps) {
-  const defaultProps = { articles: [] };
-  {/*const Thread = props.Thread;*/}
-  const navigation = props.navigation;
+const getPosts = async () => {
+  let fsPostsRef = firestore.collection("posts");
+  let fsPosts = await fsPostsRef.get();
+}
 
-  const propTypes = {
-    articles: PropTypes.array,
-  };
+export default function Feed({ feedItems, loading, navigation }: FeedProps) {
 
-  const renderItem = (item: FeedItemData) => {
+  const fsPosts = getPosts;
+
+  const renderItem = (item: Post) => {
     return (
       <FeedItem
-        item={item}
+        post={item}
         navigation={navigation}
       />
     );
   };
 
-  if (props.loading) {
+  if (loading) {
     return (
       <View style={styles.container}>
         <ActivityIndicator size="large" color="black" />
@@ -44,7 +46,7 @@ export default function Feed(props: FeedProps) {
     return (
       <SafeAreaView style={styles.container}>
         <FlatList style={styles.list}
-          data={props.feedItems}
+          data={feedItems} // was feedItems
           renderItem={({ item }) => renderItem(item)}
           keyExtractor={(item) => item.id}
         />
