@@ -18,20 +18,31 @@ export type Post = {
 */
 
 export const Posts = [
-    { // feel free to edit/delete this example, it's just for reference
-        id: "000",
-        user: "nifty_salamander",
-        image: require("../assets/images/togepi.jpeg"),
-        title: "Title",
-        description: "This is an example description!",
-        tags: ["tag1", "tag2", "tag3"],
-        timestamp: "3h",
-        status: 1,
-        comments: ["100"],
+    { // finalized
+        id: "001",
+        user: "CityOwls",
+        image: "../assets/images/animegirl-color.png",
+        title: "Lighting on t-shirt",
+        description: "I slapped some color on her! What do ppl think about this lighting, esp on the shirt? I'm a little iffy abt the shadows on her sleeves. (Thank you to @Saturno_22 for the feedback and @izipizi for redlining!!)",
+        tags: ["digital", "illustration", "anime", "cell_shading"],
+        timestamp: "Feb 24",
+        status: 2,
+        comments: ["101"],
         topLevel: true,
-        previousVersions: []
+        previousVersions: ["002"]
     },
-    {
-        // more posts
+    
+    { // finalized
+        id: "002",
+        user: "CityOwls",
+        image: "../assets/images/animegirl-nocolor.png",
+        title: "Help with face proportions",
+        description: "Something feels off about this sketch but I can’t figure out what it is. I think it might be the face proportions? Does anyone have ideas?",
+        tags: ["digital", "illustration", "anime", "sketch"],
+        timestamp: "Feb 19",
+        status: 3,
+        comments: ["103"],
+        topLevel: true,
+        previousVersions: ["002"]
     },
 ];

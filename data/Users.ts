@@ -13,15 +13,39 @@ export type User = {
 */
 
 export const Users = [
-    { // feel free to edit/delete this example, it's just for reference
-        username: "nifty_salamander",
-        icon: require("../assets/images/avatar.png"),
-        numPoints: 851,
+    {
+        username: "CityOwls",
+        icon: "../assets/images/cityowls.png",
+        numPoints: 24,
+        posts: ["001", "002"],
+        following: [],
+        followers: [],
+    },
+
+    {
+        username: "izipizi",
+        icon: "../assets/images/izipizi.png",
+        numPoints: 51,
         posts: [],
         following: [],
         followers: [],
     },
+
     {
-        // more users
+        username: "saturno_22",
+        icon: "../assets/images/saturno_22.png",
+        numPoints: 102,
+        posts: [],
+        following: [],
+        followers: [],
+    },
+
+    {
+        username: "nifty_salamander",
+        icon: "../assets/images/nifty_salamander.png",
+        numPoints: 5,
+        posts: [],
+        following: [],
+        followers: [],
     },
 ];
