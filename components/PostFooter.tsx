@@ -10,7 +10,9 @@ import {
 import { Text, View } from './Themed';
 import Colors from '../constants/Colors';
 import Layout from '../constants/Layout';
-import { PostFooterProps } from '../types'; // import any other needed types from types.tsx here
+import TagArray from '../components/TagArray';
+import Filler from "../data/Filler";
+import { PostFooterProps, Post } from '../types'; // import any other needed types from types.tsx here
 // to use a component from this project, add: import MyComponent from '../components/MyComponent';
 
 
@@ -18,7 +20,9 @@ import { PostFooterProps } from '../types'; // import any other needed types fro
 export default function PostFooter({ post, navigation }: PostFooterProps) {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>This is a post footer!</Text>
+      <Text style={styles.title}>{post.title}</Text>
+      <Text style={styles.description}>{post.description}</Text>
+      <TagArray tags={Filler.post.tags} navigation={navigation} />
     </View>
   );
 }
@@ -26,13 +30,20 @@ export default function PostFooter({ post, navigation }: PostFooterProps) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'grey',
-    width: '100%',
-    margin: 5,
+    margin: Layout.gapSmall,
   },
-  text: {
+  title: {
     fontSize: 20,
+    fontWeight: 'bold',
+    padding: 8,
+    color: Colors.artally.basicDark,
+  },
+  description: {
+    fontSize: 12,
     fontWeight: 'normal',
-  }
+    marginLeft: 8,
+    marginBottom: 16,
+    color: Colors.artally.basicDark,
+  },
   // edit those styles or define more here!
 });

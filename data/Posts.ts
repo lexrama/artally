@@ -21,7 +21,7 @@ export const Posts = [
     { // finalized
         id: "001",
         user: "CityOwls",
-        image: "../assets/images/animegirl-color.png",
+        image: "../assets/images/girl_final.png",
         title: "Lighting on t-shirt",
         description: "I slapped some color on her! What do ppl think about this lighting, esp on the shirt? I'm a little iffy abt the shadows on her sleeves. (Thank you to @Saturno_22 for the feedback and @izipizi for redlining!!)",
         tags: ["digital", "illustration", "anime", "cell_shading"],
@@ -35,9 +35,23 @@ export const Posts = [
     { // finalized
         id: "002",
         user: "CityOwls",
-        image: "../assets/images/animegirl-nocolor.png",
+        image: "../assets/images/girl_original.jpg",
         title: "Help with face proportions",
         description: "Something feels off about this sketch but I can’t figure out what it is. I think it might be the face proportions? Does anyone have ideas?",
+        tags: ["digital", "illustration", "anime", "sketch"],
+        timestamp: "Feb 19",
+        status: 3,
+        comments: ["103"],
+        topLevel: true,
+        previousVersions: ["002"]
+    },
+
+    { // placeholder
+        id: "003",
+        user: "nifty_salamander",
+        image: "../assets/images/togepi.jpg",
+        title: "Another post",
+        description: "Just filling space in the feed lol",
         tags: ["digital", "illustration", "anime", "sketch"],
         timestamp: "Feb 19",
         status: 3,

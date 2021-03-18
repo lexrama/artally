@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import Feed from '../components/Feed';
-import HomeFeedScreen from './HomeScreen';
+import HomeScreen from './HomeScreen';
 import ThreadScreen from '../screens/ThreadScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -21,7 +21,7 @@ export default function HomeTabScreen() {
         headerShown: true,
       }}
     >
-      <Stack.Screen name="HomeFeed" component={HomeFeedScreen} />
+      <Stack.Screen name="HomeFeed" component={HomeScreen} />
       <Stack.Screen name="Thread" component={ThreadScreen} />
     </Stack.Navigator>
   </NavigationContainer>

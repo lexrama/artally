@@ -17,22 +17,24 @@ import { TagProps } from '../types'; // import any other needed types from types
 // see types.tsx or the doc for the data types of the props; let me know if you need to change them
 export default function Tag({ text, navigation }: TagProps) {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>This is a tag!</Text>
-    </View>
+    <TouchableOpacity style={styles.container}>
+      <Text style={styles.text}>#{text}</Text>
+    </TouchableOpacity>
   );
 }
 
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'grey',
-    width: '100%',
-    margin: 5,
+    backgroundColor: Colors.artally.tag,
+    borderRadius: Layout.radiusLarge,
+    marginRight: Layout.gapSmall,
+    paddingVertical: 2,
+    paddingHorizontal: 6,
   },
   text: {
-    fontSize: 20,
-    fontWeight: 'normal',
+    fontSize: Layout.textSmall,
+    fontWeight: 'bold',
+    color: Colors.artally.white,
   }
-  // edit those styles or define more here!
 });

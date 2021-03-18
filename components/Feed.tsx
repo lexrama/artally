@@ -13,9 +13,12 @@ import {
 } from "react-native";
 import * as WebBrowser from "expo-web-browser";
 import FeedItem from '../components/FeedItem';
+import PostCard from '../components/PostCard';
 import { FeedProps, FeedItemData, Post, User, Comment } from "../types";
 import firebase from "firebase";
 import firestore from "../firebase";
+//import { Colors } from "react-native/Libraries/NewAppScreen";
+import Colors from "../constants/Colors";
 
 
 const getPosts = async () => {
@@ -25,14 +28,9 @@ const getPosts = async () => {
 
 export default function Feed({ feedItems, loading, navigation }: FeedProps) {
 
-  const fsPosts = getPosts;
-
-  const renderItem = (item: Post) => {
+  const renderItem = (item: Post) => { // should take in a Post
     return (
-      <FeedItem
-        post={item}
-        navigation={navigation}
-      />
+      <FeedItem post={item} navigation={navigation} />
     );
   };
 
@@ -65,40 +63,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 
-  headline: {
-    fontSize: 20,
-    fontWeight: "bold",
-    color: "#27277a",
-    fontFamily: "Georgia",
-    paddingBottom: 7
-  },
-
-  snippet: {
-    fontSize: 14,
-    paddingBottom: 7,
-    fontFamily: "Georgia",
-  },
-
-  meta: {
-    fontSize: 12,
-    color: "gray",
-  },
-
-  listItem: {
-    borderColor: "#27277a",
-    borderWidth: 1,
-    padding: 13,
-    marginTop: 7,
-    marginLeft: 7,
-    marginRight: 7,
-    backgroundColor: "white",
-    borderRadius: 10,
-  },
-
   list: {
-    backgroundColor: "#e4e4f0",
+    backgroundColor: Colors.artally.basicLight,
     borderColor: "#27277a",
-    borderTopWidth: 1,
+    //borderTopWidth: 1,
   },
 
 });

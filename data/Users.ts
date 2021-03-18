@@ -42,7 +42,7 @@ export const Users = [
 
     {
         username: "nifty_salamander",
-        icon: "../assets/images/nifty_salamander.png",
+        icon: "../assets/images/nifty_salamander.jpg",
         numPoints: 5,
         posts: [],
         following: [],

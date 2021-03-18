@@ -7,7 +7,7 @@ import { Image } from "react-native";
 
 export type User = {
   username: string;
-  icon: Image; // ex. require("../assets/images/togepi.png")
+  icon: string; // ex. "../assets/images/togepi.png"
   numPoints: number;
   posts: string[]; // array of IDs; get length for numPosts
   following: string[]; // array of usernames; get length for numFollowing
@@ -17,7 +17,7 @@ export type User = {
 export type Post = {
   id: string; // make this a unique number starting with 0, ex. "001"
   user: string; // username of user who posted the comment
-  image: Image; // ex. require("../assets/images/togepi.png")
+  image: string; // ex. require("../assets/images/togepi.png")
   title: string;
   description: string;
   tags: string[]; // ex. [digital, illustration, shading] -- DON'T put the # symbol
@@ -41,7 +41,7 @@ export type Comment = {
   upvoted: boolean; // defaults to false
   downvoted: boolean; // defaults to false
   hasImage: boolean; // true if there's an image attached, false otherwise
-  image: Image; // image attachment
+  image: string; // image attachment
   topLevel: boolean; // false if this is a reply to another comment, true otherwise
   replies: string[]; // array of IDs of replies to this comment in chronological order;
                      // should be EMPTY if this itself is a reply, because we're only doing 1 layer of nesting
@@ -58,13 +58,26 @@ export type ProfileHeaderProps = {
 }
 
 export type PostHeaderProps = {
-  user: User; // user who posted it
   post: Post;
   navigation: any;
 }
 
+export type PostCardProps = {
+  post: Post;
+  navigation: any;
+}
+
+export type FullWidthImageProps = {
+  source: any;
+}
+
 export type PostFooterProps = {
   post: Post;
+  navigation: any;
+}
+
+export type CommentProps = {
+  comment: Comment;
   navigation: any;
 }
 

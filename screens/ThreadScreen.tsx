@@ -4,34 +4,19 @@ import { Image, StyleSheet } from 'react-native';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import Feed from '../components/Feed';
-import { ThreadScreenProps } from '../types';
+import FullWidthImage from '../components/FullWidthImage';
+import { ThreadScreenProps, Post } from '../types';
+import PostCard from "../components/PostCard";
+import Comment from "../components/Comment";
+import Images from "../constants/Images";
+import Filler from "../data/Filler";
 
 export default function ThreadScreen({post, navigation}: ThreadScreenProps) {
     return (
         <View style={styles.container}>
-            <View style={styles.comment}>
-                <Image source={require("../assets/images/avatar.png")} />
-                <Text style={styles.username}>username</Text>
-            </View>
-            <Image source={require("../assets/images/togepi.jpeg")} />
-            <Text style={styles.title}>Title</Text>
-            <Text style={styles.body}>Description</Text>
-            <Text style={styles.tags}>#tag1  #tag2  #tag3  #tag4  #tag5</Text>
-            <View style={styles.comment}>
-                <Image source={require("../assets/images/avatar.png")} />
-                <Text style={styles.username}>other_username</Text>
-                <Text style={styles.commentText}>this is a comment!</Text>
-            </View>
-            <View style={styles.comment}>
-                <Image source={require("../assets/images/avatar.png")} />
-                <Text style={styles.username}>other_other_username</Text>
-                <Text style={styles.commentText}>this is another comment! :)</Text>
-            </View>
-            <View style={styles.comment}>
-                <Image source={require("../assets/images/avatar.png")} />
-                <Text style={styles.username}>username4</Text>
-                <Text style={styles.commentText}>so many comments!!</Text>
-            </View>
+            <PostCard post={Filler.post} navigation={navigation}/>
+            <Comment comment={Filler.comment} navigation={navigation}/>
+            <Comment comment={Filler.comment} navigation={navigation}/>
         </View>
     );
 }

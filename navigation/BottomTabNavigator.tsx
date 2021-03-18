@@ -17,15 +17,32 @@ const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 export default function BottomTabNavigator() {
   const colorScheme = useColorScheme();
 
+  const headerOptions = {
+    headerStyle: {
+      backgroundColor: Colors.artally.basicLight,
+    },
+    headerTitleStyle: {
+      color: Colors.artally.basicDark,
+    },
+  }
+
   return (
     <BottomTab.Navigator
       initialRouteName="Home"
-      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
+      tabBarOptions={{
+        activeTintColor: Colors.artally.basicLight,
+        inactiveTintColor: Colors.artally.basicDark,
+        activeBackgroundColor: Colors.artally.basicDark,
+        inactiveBackgroundColor: Colors.artally.basicLight,
+        showLabel: false,
+      }}
+      >
+        
       <BottomTab.Screen
         name="Home"
         component={HomeTabNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-home" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-home" color={color}/>,
         }}
       />
       <BottomTab.Screen
@@ -63,7 +80,7 @@ export default function BottomTabNavigator() {
 // You can explore the built-in icon families and icons on the web at:
 // https://icons.expo.fyi/
 function TabBarIcon(props: { name: React.ComponentProps<typeof Ionicons>['name']; color: string }) {
-  return <Ionicons size={30} style={{ marginBottom: -3 }} {...props} />;
+  return <Ionicons size={25} style={{ marginBottom: 0 }} {...props} />;
 }
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
