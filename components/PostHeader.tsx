@@ -77,7 +77,7 @@ export default function PostHeader({ post, navigation }: PostHeaderProps) {
 
   const createAlert = () =>
     Alert.alert(
-      "Post Options",
+      "Feed Options",
       "",
       [
         {

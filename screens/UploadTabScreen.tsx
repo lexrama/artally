@@ -3,6 +3,7 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import EditScreenInfo from '../components/EditScreenInfo';
@@ -20,6 +21,28 @@ export default function UploadTabScreen({ navigation }: UploadTabParamList) {
   const [tagStr, onChangeTagStr] = React.useState("");
   const [description, onChangeDescription] = React.useState("");
   let tags = [];
+
+
+  const confirm = () =>
+    Alert.alert(
+      "Post uploaded!",
+      "",
+      [
+        {
+          text: "View post",
+          onPress: () => navigation.navigate("Thread"),
+        },
+        {
+          text: "View my profile",
+          onPress: () => navigation.navigate("MyProfile"),
+        },
+        {
+          text: "OK",
+          style: "cancel"
+        }
+      ]
+    );
+
 
   return (
     <View style={styles.container}>
@@ -57,10 +80,10 @@ export default function UploadTabScreen({ navigation }: UploadTabParamList) {
           onChangeText={(inputText) => onChangeDescription(inputText)}
           value={description} // was "text"
           placeholder="Any additional details?"
-          // NEED TO MAKE KEYBOARD DISMISS!!!!
+        // NEED TO MAKE KEYBOARD DISMISS!!!!
         />
       </View>
-      <Button onPress={() => console.log("New post uploaded!")} title="Post" type={"active"} navigation={navigation} />
+      <Button onPress={() => confirm()} title="Post" type={"active"} navigation={navigation} />
     </View>
   );
 }

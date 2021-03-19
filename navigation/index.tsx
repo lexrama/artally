@@ -60,7 +60,7 @@ function RootNavigator() {
       <Stack.Screen name="Profile" component={ProfileScreen} />
       <Stack.Screen name="Notifications" component={NotificationsScreen} />
       <Stack.Screen name="Conversation" component={ConversationScreen} />
-      <Stack.Screen name="Results" component={SearchResultsScreen} />
+      <Stack.Screen name="Results" component={SearchResultsScreen}  options={{ title: "Search Results" }}/>
     </Stack.Navigator>
   );
 }

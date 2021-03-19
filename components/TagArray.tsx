@@ -17,11 +17,11 @@ import Tag from '../components/Tag'
 
 
 // see types.tsx or the doc for the data types of the props; let me know if you need to change them
-export default function TagArray({ tags, navigation }: TagArrayProps) {
+export default function TagArray({ tags, size, navigation }: TagArrayProps) {
   
   const renderItem = (item: string) => {
     return (
-      <Tag text={item} navigation={navigation}/>
+      <Tag text={item} size={size} navigation={navigation}/>
     );
   };
   

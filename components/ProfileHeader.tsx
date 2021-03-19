@@ -42,7 +42,7 @@ export default function ProfileHeader({ user, mine, navigation }: ProfileHeaderP
         </View>
         </View>
       </View>
-      <TagArray tags={user.tags} navigation={navigation} />
+      <TagArray tags={user.tags} size="small" navigation={navigation} />
     </View>
   );
 }

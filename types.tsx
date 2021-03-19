@@ -159,11 +159,13 @@ export type CommentProps = {
 
 export type TagProps = {
   text: string;
+  size: string;
   navigation: any;
 }
 
 export type TagArrayProps = {
   tags: string[];
+  size: string;
   navigation: any;
 }
 

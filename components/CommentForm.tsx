@@ -5,6 +5,8 @@ import {
     SafeAreaView,
     Button,
     Image,
+    Alert,
+    TextInput,
     TouchableOpacity, // replace a View with this to make the entire view clickable
     // import any other needed React components here
 } from "react-native";
@@ -14,17 +16,40 @@ import Layout from '../constants/Layout';
 import Filler from "../data/Filler";
 import { CommentProps } from '../types'; // import any other needed types from types.tsx here
 import UserIcon from './UserIcon';
+import { Users } from '../data/Users2';
 // to use a component from this project, add: import MyComponent from '../components/MyComponent';
 
 
+const confirm = () =>
+    Alert.alert(
+        "Comment uploaded!",
+        "",
+        [
+            {
+                text: "OK",
+                style: "cancel"
+            }
+        ]
+    );
+
+
 // see types.tsx or the doc for the data types of the props; let me know if you need to change them
-export default function Comment({ comment, navigation }: CommentProps) {
+export default function CommentForm({ navigation }: CommentProps) {
+    const user = Users.nifty_salamander;
+
+    const [text, onChangeText] = React.useState("");
     return (
         <View style={styles.container}>
-            <UserIcon user={Filler.user} size={"small"} navigation={navigation} />
+            <UserIcon user={user} size={"small"} navigation={navigation} />
             <View style={styles.body}>
-                <Text style={styles.username}>{Filler.user.username}</Text>
-                <Text style={styles.text}>{Filler.comment.text}</Text>
+                <Text style={styles.username}>{user.username}</Text>
+                <TextInput
+                    style={styles.textInput}
+                    onChangeText={(inputText) => onChangeText(inputText)}
+                    onSubmitEditing={() => confirm()}
+                    value={text}
+                    placeholder="ex. traditional, illustration, perspective"
+                />
             </View>
             <View style={styles.buttons}>
                 <Ionicons name="chevron-up" size={18} color={Colors.artally.basicDark} />
@@ -61,5 +86,14 @@ const styles = StyleSheet.create({
     },
     buttons: {
         flex: 1,
-    }
+    },
+    textInput: {
+        width: "100%",
+        borderColor: Colors.artally.basicMidLight,
+        borderRadius: Layout.radiusLarge,
+        borderWidth: 1,
+        fontSize: Layout.textMid,
+        color: Colors.artally.basicDark,
+        padding: Layout.gapSmall,
+    },
 });

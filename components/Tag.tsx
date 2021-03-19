@@ -15,10 +15,17 @@ import { TagProps } from '../types'; // import any other needed types from types
 
 
 // see types.tsx or the doc for the data types of the props; let me know if you need to change them
-export default function Tag({ text, navigation }: TagProps) {
+export default function Tag({ text, size, navigation }: TagProps) {
+  if (size=="large") {
+    return (
+      <TouchableOpacity style={styles.container} onPress={() => navigation.navigate("Results")}>
+        <Text style={styles.textLarge}>#{text}</Text>
+      </TouchableOpacity>
+    );
+  }
   return (
-    <TouchableOpacity style={styles.container}>
-      <Text style={styles.text}>#{text}</Text>
+    <TouchableOpacity style={styles.container} onPress={() => navigation.navigate("Results")}>
+      <Text style={styles.textSmall}>#{text}</Text>
     </TouchableOpacity>
   );
 }
@@ -32,8 +39,13 @@ const styles = StyleSheet.create({
     paddingVertical: 2,
     paddingHorizontal: 6,
   },
-  text: {
+  textSmall: {
     fontSize: Layout.textSmall,
+    fontWeight: 'bold',
+    color: Colors.artally.white,
+  },
+  textLarge: {
+    fontSize: Layout.textLarge,
     fontWeight: 'bold',
     color: Colors.artally.white,
   }
