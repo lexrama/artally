@@ -3,7 +3,7 @@ import { User, Post, Comment } from "../types";
 
 /* 
 export type Post = {
-  id: string; // make this a unique number starting with 0, ex. "001"
+  id: int; // make this a unique number starting with 0, ex. "001"
   user: string; // username of user who posted the comment
   image: Image; // ex. require("../assets/images/togepi.png")
   title: string;
@@ -19,7 +19,7 @@ export type Post = {
 
 export const Posts = [
     { // finalized
-        id: "001",
+        id: 1,
         user: "CityOwls",
         image: "../assets/images/girl_final.png",
         title: "Lighting on t-shirt",
@@ -27,13 +27,13 @@ export const Posts = [
         tags: ["digital", "illustration", "anime", "cell_shading"],
         timestamp: "Feb 24",
         status: 2,
-        comments: ["101"],
+        comments: [101],
         topLevel: true,
-        previousVersions: ["002"]
+        previousVersions: [2]
     },
     
     { // finalized
-        id: "002",
+        id: 2,
         user: "CityOwls",
         image: "../assets/images/girl_original.jpg",
         title: "Help with face proportions",
@@ -41,22 +41,106 @@ export const Posts = [
         tags: ["digital", "illustration", "anime", "sketch"],
         timestamp: "Feb 19",
         status: 3,
-        comments: ["103"],
-        topLevel: true,
-        previousVersions: ["002"]
+        comments: [103],
+        topLevel: false,
+        previousVersions: []
     },
 
-    { // placeholder
-        id: "003",
+    { // finalized
+        id: 3,
         user: "nifty_salamander",
-        image: "../assets/images/togepi.jpg",
-        title: "Another post",
-        description: "Just filling space in the feed lol",
-        tags: ["digital", "illustration", "anime", "sketch"],
-        timestamp: "Feb 19",
-        status: 3,
-        comments: ["103"],
+        image: "../assets/images/geometry.jpg",
+        title: "Cast shadows",
+        description: "Hey everyone, I’ve been struggling with where the cast shadows would fall in this image, especially underneath the spheres. Does anyone have any tips? (feel free to insult my crosshatching too... i don’t understand how traditional artists do it 😭)",
+        tags: ["traditional", "geometry", "fundamentals", "shadows"],
+        timestamp: "3d",
+        status: 1,
+        comments: [],
         topLevel: true,
-        previousVersions: ["002"]
+        previousVersions: []
+    },
+
+    { // finalized
+        id: 4,
+        user: "nifty_salamander",
+        image: "../assets/images/jolteon.jpg",
+        title: "Color choice",
+        description: "Does anyone have thoughts on this yellow/purple color scheme? Does it clash? (also feedback on the face shadows would be nice haha, I thought it would be cool at first but now I’m wondering if it’s too much 😅)",
+        tags: ["pokemon", "jolteon", "color", "illustration"],
+        timestamp: "Jan 29",
+        status: 3,
+        comments: [110, 111, 112],
+        topLevel: true,
+        previousVersions: []
+    },
+
+    { // maybe add some comments? otherwise finalized
+        id: 5,
+        user: "izipizi",
+        image: "../assets/images/diglett.jpg",
+        title: "diglett render composition",
+        description: "can i get some feedback on the framing of this render? i want it to look like ur the size of an ant lmao",
+        tags: ["3d", "render", "cgi", "pokemon", "composition"],
+        timestamp: "5h",
+        status: 1,
+        comments: [],
+        topLevel: true,
+        previousVersions: []
+    },
+
+    { // finalized
+        id: 6,
+        user: "izipizi",
+        image: "../assets/images/porygon.jpg",
+        title: "diglett render composition",
+        description: "any thoughts on the colors here... going for a little bit of eyestrain but not TOO much yanno",
+        tags: ["3d", "render", "cgi", "pokemon", "porygon"],
+        timestamp: "Jan 29",
+        status: 3,
+        comments: [115],
+        topLevel: true,
+        previousVersions: []
+    },
+
+    { // maybe add some comments? otherwise finalized
+        id: 7,
+        user: "CityOwls",
+        image: "../assets/images/berries.jpg",
+        title: "Atmospheric lighting",
+        description: "Just hoping for some feedback on the lighting/colors here... I was going for a cozy autumn feel, do you think this captures it ok?",
+        tags: ["digital", "illustration", "human", "lighting", "scene"],
+        timestamp: "Dec 31, 2020",
+        status: 3,
+        comments: [120, 121, 122],
+        topLevel: true,
+        previousVersions: []
+    },
+
+    { // maybe add some comments
+        id: 8,
+        user: "Saturno_22",
+        image: "../assets/images/togepi.jpg",
+        title: "Togepi illustration",
+        description: "Hi everyone! I’m drawing Togepi for the first time and I was hoping for feedback on the way his shell is shaded - I can't help but feel like the shadows are a bit unnatural-looking here.",
+        tags: ["digital", "illustration", "cute", "pokemon", "togepi"],
+        timestamp: "4d",
+        status: 1,
+        comments: [120],
+        topLevel: true,
+        previousVersions: []
+    },
+
+    { // maybe add some comments
+        id: 9,
+        user: "Saturno_22",
+        image: "../assets/images/pikachu.png",
+        title: "Pikachu in water illustration",
+        description: "Hi guys! This is my first time including a lot of water in an image so I wanted to get input on how realistic the waves look beneath Pikachu",
+        tags: ["pastel", "illustration", "water", "pokemon", "ocean"],
+        timestamp: "Feb 2",
+        status: 3,
+        comments: [],
+        topLevel: true,
+        previousVersions: []
     },
 ];
