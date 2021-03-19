@@ -200,6 +200,10 @@ export type HomeScreenProps = {
   navigation: any;
 }
 
+export type SearchScreenProps = {
+  navigation: any;
+}
+
 export type ProfileScreenProps = {
   user: User;
   navigation: any;

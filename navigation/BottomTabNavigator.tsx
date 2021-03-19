@@ -6,7 +6,7 @@ import * as React from 'react';
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import HomeTabScreen from '../screens/HomeTabScreen';
-import SearchTabScreen from '../screens/SearchTabScreen';
+import SearchTabScreen from '../screens/search/SearchTabScreen';
 import UploadTabScreen from '../screens/UploadTabScreen';
 import MessagesTabScreen from '../screens/MessagesTabScreen';
 import MyProfileTabScreen from '../screens/MyProfileTabScreen';
