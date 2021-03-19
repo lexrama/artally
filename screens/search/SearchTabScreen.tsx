@@ -19,7 +19,7 @@ export default function SearchTabScreen() {
   <NavigationContainer independent={true}>
     <Stack.Navigator
       screenOptions={{
-        headerShown: true,
+        headerShown: false,
       }}
     >
       <Stack.Screen name="Base" component={Base} />
