@@ -11,7 +11,7 @@ import { Post } from '../types';
 
 
 const extractPost = (data: any) => {
-    let fsPost: Post = {
+    let post: Post = {
         id: data.id,
         user: data.user,
         image: data.image,
@@ -24,36 +24,36 @@ const extractPost = (data: any) => {
         topLevel: data.topLevel,
         previousVersions: data.previousVersions,
     }
-    return fsPost;
-}
-
-const getPostDocs = async () => {
-    let postsCollRef = firestore.collection("posts");
-    let postDocs = await postsCollRef.get();
-    return postDocs;
-    
-    //return fsPosts as Post[];
+    return post;
 }
 
 
 export default function HomeScreen({ navigation }: HomeScreenProps) {
+    const emptyPostsArray: Post[] = [];
+    
     const [loading, setLoading] = useState(false);
+    const [fsPosts, setFsPosts] = useState(emptyPostsArray);
 
-    let fsPostDocs = getPostDocs();
+    const getPosts = async () => {
+        let postsCollRef = firestore.collection("posts");
+        let postDocs = await postsCollRef.get();
+        let extractedPosts: Post[] = [];
+        postDocs.forEach(postDoc => {
+            let data = postDoc.data();
+            let extractedPost: Post = extractPost(data);
+            extractedPosts.push(extractedPost);
+        });
+        setFsPosts(extractedPosts);
+    }
 
-    let fsPosts: Post[] = [];
-    /*
-    fsPostDocs.forEach(postDoc => {
-        let data = postDoc.data();
-        let fsPost: Post = extractPost(data);
-        fsPosts.push(fsPost);
+    useEffect(() => {
+        getPosts();
     });
-    */
 
     return (
         <SafeAreaView style={styles.container}>
             <Feed
-                feedItems={Posts} // was feedData, eventually want this to be fsPosts
+                feedItems={fsPosts} // eventually want this to be fsPosts
                 header={true}
                 loading={loading}
                 navigation={navigation}

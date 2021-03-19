@@ -3,7 +3,8 @@ import {
   StyleSheet,
   SafeAreaView,
   Button,
-  TouchableOpacity,  // replace a View with this to make the entire view clickable
+  TouchableOpacity,
+  ImageSourcePropType,  // replace a View with this to make the entire view clickable
   // import any other needed React components here
 } from "react-native";
 import Image from 'react-native-scalable-image';
@@ -16,10 +17,13 @@ import { FullWidthImageProps } from '../types'; // import any other needed types
 
 
 // see types.tsx or the doc for the data types of the props; let me know if you need to change them
-export default function Notification({ source }: FullWidthImageProps) {
+export default function FullWidthImage({ source }: FullWidthImageProps) {
+  const src = "berries";
+  const image = Images[src];
+
   return (
     <View>
-      <Image source={source} width={Layout.window.width}/>
+      <Image source={Images.berries} width={Layout.window.width}/>
     </View>
   );
 }

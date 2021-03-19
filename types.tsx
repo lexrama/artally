@@ -7,7 +7,7 @@ import { Image } from "react-native";
 
 export type User = {
   username: string;
-  icon: string; // ex. "../assets/images/togepi.png"
+  icon: string; // ex. "togepi"
   numPoints: number;
   posts: string[]; // array of IDs; get length for numPosts
   following: string[]; // array of usernames; get length for numFollowing
@@ -17,15 +17,16 @@ export type User = {
 export type Post = {
   id: string; // make this a unique number starting with 0, ex. "001"
   user: string; // username of user who posted the comment
-  image: string; // ex. require("../assets/images/togepi.png")
+  image: string; // ex. "togepi"
   title: string;
   description: string;
   tags: string[]; // ex. [digital, illustration, shading] -- DON'T put the # symbol
   timestamp: string; // like Twitter, ex. "31s", "5m", "7h", "2d", "Feb 21", "Mar 20, 2010"
   status: number; // 1 for Open, 2 for Open (UPDATE), 3 for Closed (do we need to change these based on Heuristic Eval?)
   comments: string[]; // array of IDs of comments in chronological order
-  topLevel: boolean; // true if this is the most recent version of the post, false otherwise
   previousVersions: string[]; // array of IDs of previous versions IN THE ORDER THEY SHOULD BE DISPLAYED, ie. reverse-chron
+                              // stored ONLY in the most recent post; ie. most recent post should list all previous versions
+                              // in this array, but older versions should have an EMPTY previousVersions array
 }
 
 
@@ -40,9 +41,7 @@ export type Comment = {
   downvotes: number;
   upvoted: boolean; // defaults to false
   downvoted: boolean; // defaults to false
-  hasImage: boolean; // true if there's an image attached, false otherwise
-  image: string; // image attachment
-  topLevel: boolean; // false if this is a reply to another comment, true otherwise
+  image: string; // image attachment, ex. "togepi" (empty string if none)
   replies: string[]; // array of IDs of replies to this comment in chronological order;
                      // should be EMPTY if this itself is a reply, because we're only doing 1 layer of nesting
 }
@@ -79,7 +78,7 @@ export type PostCardProps = {
 }
 
 export type FullWidthImageProps = {
-  source: any;
+  source: string;
 }
 
 export type PostFooterProps = {
