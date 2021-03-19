@@ -19,7 +19,7 @@ import Images from "../constants/Images";
 import Filler from "../data/Filler";
 import PostCard from "./PostCard";
 
-export default function FeedItem({post, navigation}: FeedItemProps) {
+export default function FeedItem({post, header, navigation}: FeedItemProps) {
   const threadProps: ThreadScreenProps = {
     post: post,
     navigation: navigation,
@@ -27,7 +27,7 @@ export default function FeedItem({post, navigation}: FeedItemProps) {
   
   return (
     <TouchableOpacity style={styles.container} onPress={() => navigation.navigate('Thread', threadProps)}>
-      <PostCard post={post} navigation={navigation} />
+      <PostCard post={post} header={header} navigation={navigation} />
     </TouchableOpacity>
   );
 

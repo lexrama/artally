@@ -14,7 +14,7 @@ import Filler from "../data/Filler";
 export default function ThreadScreen({post, navigation}: ThreadScreenProps) {
     return (
         <View style={styles.container}>
-            <PostCard post={Filler.post} navigation={navigation}/>
+            <PostCard post={Filler.post} header={true} navigation={navigation}/>
             <Comment comment={Filler.comment} navigation={navigation}/>
             <Comment comment={Filler.comment} navigation={navigation}/>
         </View>

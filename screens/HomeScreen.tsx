@@ -54,6 +54,7 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
         <SafeAreaView style={styles.container}>
             <Feed
                 feedItems={Posts} // was feedData, eventually want this to be fsPosts
+                header={true}
                 loading={loading}
                 navigation={navigation}
             />

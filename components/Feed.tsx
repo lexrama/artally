@@ -26,11 +26,11 @@ const getPosts = async () => {
   let fsPosts = await fsPostsRef.get();
 }
 
-export default function Feed({ feedItems, loading, navigation }: FeedProps) {
+export default function Feed({ feedItems, header, loading, navigation }: FeedProps) {
 
   const renderItem = (item: Post) => { // should take in a Post
     return (
-      <FeedItem post={item} navigation={navigation} />
+      <FeedItem post={item} header={header} navigation={navigation} />
     );
   };
 

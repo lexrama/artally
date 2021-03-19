@@ -22,4 +22,6 @@ export default {
   textSmall: 10,
   textMid: 12,
   textLarge: 20,
+  buttonRadius: 16,
+  buttonHeight: 32,
 };

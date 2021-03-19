@@ -52,6 +52,16 @@ export type Comment = {
 
 /***** COMPONENT PROPS *****/
 
+
+// EXAMPLE
+export type MyComponentProps = {
+  myString: string;
+  myNumber: number;
+  myBoolean: boolean;
+  navigation: any;
+}
+
+
 export type ProfileHeaderProps = {
   user: User;
   navigation: any;
@@ -64,6 +74,7 @@ export type PostHeaderProps = {
 
 export type PostCardProps = {
   post: Post;
+  header: boolean; // true if header should appear (ie. on home feed), false otherwise (ie. on profiles)
   navigation: any;
 }
 
@@ -117,12 +128,21 @@ export type ScreenHeaderProps = {
 
 export type FeedProps = {
   feedItems: Post[], // was FeedItemData[]
+  header: boolean;
   loading: boolean,
   navigation: any;
 }
 
 export type FeedItemProps = {
   post: Post; // was item: FeedItemData;
+  header: boolean;
+  navigation: any;
+}
+
+export type ButtonProps = {
+  title: string;
+  type: string; // bold, outline, muted
+  onPress: any;
   navigation: any;
 }
 
@@ -178,6 +198,11 @@ export type MyProfileTabParamList = {
 };
 
 export type HomeScreenProps = {
+  navigation: any;
+}
+
+export type ProfileScreenProps = {
+  user: User;
   navigation: any;
 }
 

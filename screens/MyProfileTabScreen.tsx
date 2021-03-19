@@ -3,14 +3,28 @@ import { StyleSheet } from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
+import Feed from '../components/Feed';
+import ProfileScreen from './ProfileScreen';
+import ThreadScreen from '../screens/ThreadScreen';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
 export default function MyProfileTabScreen() {
+
+  const Stack = createStackNavigator();
+  const navigationRef = React.useRef(null);
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>My Profile</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/ProfileTabScreen.tsx" />
-    </View>
+  <NavigationContainer independent={true}>
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: true,
+      }}
+    >
+      <Stack.Screen name="Profile" component={ProfileScreen} />
+      <Stack.Screen name="Thread" component={ThreadScreen} />
+    </Stack.Navigator>
+  </NavigationContainer>
   );
 }
 
