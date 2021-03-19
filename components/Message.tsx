@@ -10,6 +10,7 @@ import {
 import { Text, View } from './Themed';
 import Colors from '../constants/Colors';
 import Layout from '../constants/Layout';
+import { Users } from '../data/Users2';
 import { MessageProps } from '../types'; // import any other needed types from types.tsx here
 import UserIcon from './UserIcon';
 import Filler from '../data/Filler';
@@ -20,7 +21,7 @@ import Filler from '../data/Filler';
 export default function Message({ text, navigation }: MessageProps) {
   return (
     <View style={styles.container}>
-      <UserIcon user={Filler.user} size="small" navigation={navigation}/>
+      <UserIcon user={Users.saturno_22} size="small" navigation={navigation}/>
       <View style={styles.message}>
         <Text style={styles.text}>{text}</Text>
       </View>

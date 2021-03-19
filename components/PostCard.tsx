@@ -25,16 +25,11 @@ import PostFooter from './PostFooter';
 
 // see types.tsx or the doc for the data types of the props; let me know if you need to change them
 export default function PostCard({ post, header, navigation }: PostCardProps) {
-  //console.log(post.image);
-  const imgRef = post.image;
-  //const img = require(imgRef);
-  const img = require("../assets/images/girl_final.png");
-  
   if (header == false) {
     return (
       <View style={styles.container}>
         <View style={styles.spacer}></View>
-        <FullWidthImage source={post.image} />
+        <FullWidthImage source={post.image} size="full"/>
         <PostFooter post={post} navigation={navigation} />
       </View>
     );
@@ -42,7 +37,7 @@ export default function PostCard({ post, header, navigation }: PostCardProps) {
     return (
       <View style={styles.container}>
         <PostHeader post={post} navigation={navigation} />
-        <FullWidthImage source={Images.pikachu} />
+        <FullWidthImage source={post.image} size="full"/>
         <PostFooter post={post} navigation={navigation} />
       </View>
     );
@@ -54,7 +49,7 @@ const styles = StyleSheet.create({
   container: {
     borderColor: Colors.artally.basicLight,
     borderTopWidth: 1,
-    paddingBottom: Layout.gapSmall,
+    //paddingBottom: Layout.gapSmall,
   },
   spacer: {
     backgroundColor: Colors.artally.white,

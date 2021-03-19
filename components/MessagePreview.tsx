@@ -12,6 +12,7 @@ import Colors from '../constants/Colors';
 import Layout from '../constants/Layout';
 import { MessagePreviewProps } from '../types'; // import any other needed types from types.tsx here
 import Filler from '../data/Filler';
+import { Users } from '../data/Users2';
 import UserIcon from './UserIcon';
 import Images from '../constants/Images';
 // to use a component from this project, add: import MyComponent from '../components/MyComponent';

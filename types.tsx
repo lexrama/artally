@@ -5,12 +5,72 @@ import { Image } from "react-native";
 
 /***** DATABASE CONTENT *****/
 
+
+export type User = {
+  username: string;
+  icon: string;
+  tags: string[];
+  numPoints: number;
+  posts: Post[];
+  following: string[];
+  followers: string[];
+}
+
+export type Post = {
+  id: number;
+  user: string;
+  image: string;
+  title: string;
+  description: string;
+  tags: string[];
+  timestamp: string;
+  status: number;
+  comments: {
+    id: number;
+    post: number;
+    user: string;
+    op: boolean;
+    text: string;
+    timestamp: string;
+    upvotes: number;
+    downvotes: number;
+    upvoted: boolean;
+    downvoted: boolean;
+    hasImage: boolean;
+    image: string;
+    topLevel: boolean;
+    replies: number[];
+  }[];
+  topLevel: boolean;
+  previousVersions: number[];
+}
+
+
+export type Comment = {
+  id: number;
+  post: number;
+  user: string;
+  op: boolean;
+  text: string;
+  timestamp: string;
+  upvotes: number;
+  downvotes: number;
+  upvoted: boolean;
+  downvoted: boolean;
+  hasImage: boolean;
+  image: string;
+  topLevel: boolean;
+  replies: number[];
+}
+
+
+/*
 export type User = {
   username: string;
   icon: string; // ex. "togepi"
   tags: string[];
   numPoints: number;
-  posts: number[]; // array of IDs; get length for numPosts
+  posts: Post[]; // array of IDs; get length for numPosts
   following: string[]; // array of usernames; get length for numFollowing
   followers: string[]; // array of usernames; get length for numFollowers
 }
@@ -24,8 +84,9 @@ export type Post = {
   tags: string[]; // ex. [digital, illustration, shading] -- DON'T put the # symbol
   timestamp: string; // like Twitter, ex. "31s", "5m", "7h", "2d", "Feb 21", "Mar 20, 2010"
   status: number; // 1 for Open, 2 for Open (UPDATE), 3 for Closed (do we need to change these based on Heuristic Eval?)
-  comments: number[]; // array of IDs of comments in chronological order
-  previousVersions: number[]; // array of IDs of previous versions IN THE ORDER THEY SHOULD BE DISPLAYED, ie. reverse-chron
+  comments: Comment[]; // array of IDs of comments in chronological order
+  topLevel: boolean;
+  previousVersions: Post[]; // array of IDs of previous versions IN THE ORDER THEY SHOULD BE DISPLAYED, ie. reverse-chron
                               // stored ONLY in the most recent post; ie. most recent post should list all previous versions
                               // in this array, but older versions should have an EMPTY previousVersions array
 }
@@ -33,7 +94,7 @@ export type Post = {
 
 export type Comment = {
   id: number; // make this a unique number starting with 1, ex. "101"
-  post: string; // ID of the post it belongs to, ex. "001"
+  post: number; // ID of the post it belongs to, ex. "001"
   user: string; // username of person commenting
   op: boolean // true if it's from the original poster, false otherwise
   text: string; // body of comment
@@ -42,11 +103,13 @@ export type Comment = {
   downvotes: number;
   upvoted: boolean; // defaults to false
   downvoted: boolean; // defaults to false
+  hasImage: boolean;
   image: string; // image attachment, ex. "togepi" (empty string if none)
-  replies: number[]; // array of IDs of replies to this comment in chronological order;
+  topLevel: boolean;
+  replies: Comment[]; // array of IDs of replies to this comment in chronological order;
                      // should be EMPTY if this itself is a reply, because we're only doing 1 layer of nesting
 }
-
+*/
 
 
 
@@ -64,6 +127,7 @@ export type MyComponentProps = {
 
 export type ProfileHeaderProps = {
   user: User;
+  mine: boolean;
   navigation: any;
 }
 
@@ -80,6 +144,7 @@ export type PostCardProps = {
 
 export type FullWidthImageProps = {
   source: string;
+  size: string;
 }
 
 export type PostFooterProps = {
@@ -184,7 +249,7 @@ export type BottomTabParamList = {
   Search: undefined;
   Upload: undefined;
   Messages: undefined;
-  Profile: undefined;
+  MyProfile: undefined;
   navigation: any;
 };
 

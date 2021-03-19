@@ -69,7 +69,7 @@ export default function BottomTabNavigator({ navigation }: BottomTabParamList) {
         }}
       />
       <BottomTab.Screen
-        name="Profile"
+        name="MyProfile"
         component={MyProfileTabNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="ios-person" color={color} />,

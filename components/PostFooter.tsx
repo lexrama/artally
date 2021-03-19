@@ -19,6 +19,8 @@ import StatusTag from '../components/StatusTag';
 
 // see types.tsx or the doc for the data types of the props; let me know if you need to change them
 export default function PostFooter({ post, navigation }: PostFooterProps) {
+  if (post.user == "nifty_salamander") {} // ignore this lol working on it
+  
   return (
     <View style={styles.container}>
       <View style={styles.topRow}>

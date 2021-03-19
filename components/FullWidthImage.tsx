@@ -36,8 +36,8 @@ porygon
 
 
 // see types.tsx or the doc for the data types of the props; let me know if you need to change them
-export default function FullWidthImage({ source }: FullWidthImageProps) {
-  const width = Layout.window.width;
+export default function FullWidthImage({ source, size }: FullWidthImageProps) {
+  const width = size == "icon" ? Layout.iconSmall : Layout.window.width;
   let img = Images.togepi;
 
   if (source == "artally") {

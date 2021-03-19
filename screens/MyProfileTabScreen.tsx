@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native';
 import { Posts } from '../data/Posts';
 import firestore from "../firebase";
 import { Post, ProfileScreenProps } from '../types';
+import { Users } from '../data/Users2';
 import EditScreenInfo from '../components/EditScreenInfo';
 import ProfileHeader from '../components/ProfileHeader';
 import Feed from '../components/Feed';
@@ -12,12 +13,12 @@ import Filler from '../data/Filler';
 
 export default function ProfileScreen({ navigation }: ProfileScreenProps) {
   const [loading, setLoading] = useState(false);
-  
+
   return (
     <View>
-      <ProfileHeader user={Filler.user} navigation={navigation}/>
+      <ProfileHeader user={Users.nifty_salamander} navigation={navigation} mine={true} />
       <Feed
-        feedItems={Posts} // was feedData, eventually want this to be fsPosts
+        feedItems={Users.nifty_salamander.posts} // was feedData, eventually want this to be fsPosts
         header={false}
         loading={loading}
         navigation={navigation}

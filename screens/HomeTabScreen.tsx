@@ -1,15 +1,15 @@
-
 import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View, SafeAreaView, ActivityIndicator, Button } from "react-native";
 import Feed from '../components/Feed';
 import FeedItem from '../components/FeedItem';
 import { HomeScreenProps } from "../types";
 import { feedData } from '../data/FeedData';
+import { Users } from '../data/Users2';
 import { Posts } from '../data/Posts';
 import firestore from "../firebase";
 import { Post, HomeTabParamList } from '../types';
 
-
+/*
 const extractPost = (data: any) => {
     let post: Post = {
         id: data.id,
@@ -25,6 +25,7 @@ const extractPost = (data: any) => {
     }
     return post;
 }
+*/
 
 
 export default function HomeTabScreen({ navigation }: HomeTabParamList) {
@@ -33,6 +34,7 @@ export default function HomeTabScreen({ navigation }: HomeTabParamList) {
     const [loading, setLoading] = useState(false);
     const [fsPosts, setFsPosts] = useState(emptyPostsArray);
 
+    /*
     const getPosts = async () => {
         let postsCollRef = firestore.collection("posts");
         let postDocs = await postsCollRef.get();
@@ -45,22 +47,35 @@ export default function HomeTabScreen({ navigation }: HomeTabParamList) {
         setFsPosts(extractedPosts);
     }
 
-    /*
+    
     useEffect(() => {
         getPosts();
     });
     */
+    
+
+    let allPosts: Post[] = [];
+
+    Users.cityowls.posts.forEach(post =>
+        allPosts.push(post)
+    );
+    Users.saturno_22.posts.forEach(post =>
+        allPosts.push(post)
+    );
+    Users.izipizi.posts.forEach(post =>
+        allPosts.push(post)
+    );
 
     return (
         <SafeAreaView>
-          <Feed
-            feedItems={Posts} // was feedData, eventually want this to be fsPosts
-            header={true}
-            loading={loading}
-            navigation={navigation}
-          />
+            <Feed
+                feedItems={allPosts} // was feedData, eventually want this to be fsPosts
+                header={true}
+                loading={loading}
+                navigation={navigation}
+            />
         </SafeAreaView>
-      );
+    );
 }
 
 const styles = StyleSheet.create({

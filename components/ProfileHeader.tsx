@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Ionicons } from '@expo/vector-icons';
 import {
   StyleSheet,
   SafeAreaView,
@@ -18,12 +19,19 @@ import Button from "../components/Button";
 
 
 // see types.tsx or the doc for the data types of the props; let me know if you need to change them
-export default function ProfileHeader({ user, navigation }: ProfileHeaderProps) {
+export default function ProfileHeader({ user, mine, navigation }: ProfileHeaderProps) {
+
+  let topLeft = (<Button title="Follow" type="active" navigation={navigation} onPress={null}/>);
+  if (mine) {
+    topLeft = (<Ionicons name="settings-outline" size={25} color={Colors.artally.basicDark} />);
+  }
 
   return (
     <View style={styles.container}>
       <View style={styles.aboveTags}>
         <UserIcon user={user} size="large" navigation={navigation} />
+        <View style={styles.nextToIcon}>
+        <View style={styles.topRight}>{topLeft}</View>
         <View style={styles.textElements}>
           <Text style={styles.username}>{user.username}</Text>
           <View style={styles.stats}>
@@ -32,7 +40,7 @@ export default function ProfileHeader({ user, navigation }: ProfileHeaderProps) 
             <Text style={styles.text}>{user.numPoints} points</Text>
           </View>
         </View>
-        <Button title="Follow" type="active" navigation={navigation} onPress={null}/>
+        </View>
       </View>
       <TagArray tags={user.tags} navigation={navigation} />
     </View>
@@ -50,10 +58,19 @@ const styles = StyleSheet.create({
   aboveTags: {
     flexDirection: "row",
     margin: Layout.gapSmall,
-    alignContent: "flex-end",
+    alignContent: "center",
+    justifyContent: "center",
+    //backgroundColor: "gray",
+  },
+  nextToIcon: {
+    flexDirection: "column",
+    flex: 1,
+  },
+  topRight: {
+    alignSelf: 'flex-end',
   },
   textElements: {
-    margin: Layout.gapSmall,
+    marginHorizontal: Layout.gapSmall,
   },
   text: {
     fontSize: Layout.textMid,
@@ -65,6 +82,6 @@ const styles = StyleSheet.create({
     fontSize: Layout.textLarge,
     fontWeight: 'bold',
     color: Colors.artally.basicDark,
-  }
+  },
   // edit those styles or define more here!
 });

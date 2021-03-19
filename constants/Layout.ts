@@ -14,7 +14,7 @@ export default {
   radiusSmall: 5,
   radiusLarge: 20,
   iconSmall: 41,
-  iconLarge: 77,
+  iconLarge: 60,
   textboxHeightNarrow: 35,
   navbarHeight: 60,
   subnavarHeight: 34,

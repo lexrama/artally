@@ -46,7 +46,7 @@ export default function Feed({ feedItems, header, loading, navigation }: FeedPro
         <FlatList style={styles.list}
           data={feedItems} // was feedItems
           renderItem={({ item }) => renderItem(item)}
-          keyExtractor={(item) => item.id}
+          //keyExtractor={(item) => item.id}
         />
       </View>
     );

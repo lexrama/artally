@@ -1,7 +1,7 @@
 import { User, Post, Comment } from "../types";
 
 const post: Post = {
-    id: "001",
+    id: 201,
     user: "CityOwls",
     image: "../assets/images/girl3.png",
     title: "Lighting on t-shirt",
@@ -9,8 +9,9 @@ const post: Post = {
     tags: ["digital", "illustration", "anime", "cell_shading"],
     timestamp: "Feb 24",
     status: 2,
-    comments: ["101"],
-    previousVersions: ["002"]
+    comments: [],
+    topLevel: true,
+    previousVersions: []
 }
 
 const user: User = {
@@ -18,14 +19,14 @@ const user: User = {
     icon: "../assets/images/cityowls.png",
     tags: ["digital", "illustration", "anime", "human"],
     numPoints: 24,
-    posts: ["001", "002"],
+    posts: [],
     following: [],
     followers: [],
 }
 
 const comment: Comment = {
-    id: "101",
-    post: "001",
+    id: 101,
+    post: 201,
     user: "izipizi",
     op: false,
     text: "wheres the light source supposed to be? i feel like the shadows on her shoulders and sleeves r coming from different angles...",
@@ -34,7 +35,9 @@ const comment: Comment = {
     downvotes: 0,
     upvoted: false,
     downvoted: false,
+    hasImage: false,
     image: "",
+    topLevel: true,
     replies: [],
 }
 

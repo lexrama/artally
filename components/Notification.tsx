@@ -10,7 +10,8 @@ import Image from 'react-native-scalable-image';
 import { Text, View } from './Themed';
 import Colors from '../constants/Colors';
 import Layout from '../constants/Layout';
-import { NotificationProps } from '../types'; // import any other needed types from types.tsx here
+import FullWidthImage from '../components/FullWidthImage';
+import { NotificationProps, Post } from '../types'; // import any other needed types from types.tsx here
 import Filler from '../data/Filler';
 import UserIcon from './UserIcon';
 import Images from '../constants/Images';
@@ -27,7 +28,7 @@ export default function Notification({ post, user, text, timestamp, navigation }
         <Text style={styles.text}>{text}</Text>
       </View>
       <Text style={styles.text}>{timestamp}</Text>
-      <Image source={Images.pikachu} width={Layout.iconSmall}></Image>
+      <FullWidthImage source={post.image} size="icon"/>
     </TouchableOpacity>
   );
 }
