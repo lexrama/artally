@@ -23,7 +23,7 @@ export type Comment = {
 
 export const Comments = [
     { // finalized
-        id: 101
+        id: 101,
         post: 1,
         user: "izipizi",
         op: false,

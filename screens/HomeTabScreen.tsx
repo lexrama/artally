@@ -45,14 +45,16 @@ export default function HomeTabScreen({ navigation }: HomeTabParamList) {
         setFsPosts(extractedPosts);
     }
 
+    /*
     useEffect(() => {
         getPosts();
     });
+    */
 
     return (
         <SafeAreaView style={styles.container}>
             <Feed
-                feedItems={Posts} // eventually want this to be fsPosts
+                feedItems={fsPosts} // eventually want this to be fsPosts
                 header={true}
                 loading={loading}
                 navigation={navigation}

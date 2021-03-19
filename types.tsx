@@ -104,7 +104,6 @@ export type TagArrayProps = {
 
 export type StatusTagProps = {
   status: number;
-  navigation: any;
 }
 
 export type NotificationProps = {

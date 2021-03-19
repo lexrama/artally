@@ -13,6 +13,7 @@ import Layout from '../constants/Layout';
 import TagArray from '../components/TagArray';
 import Filler from "../data/Filler";
 import { PostFooterProps, Post } from '../types'; // import any other needed types from types.tsx here
+import StatusTag from '../components/StatusTag';
 // to use a component from this project, add: import MyComponent from '../components/MyComponent';
 
 
@@ -20,7 +21,10 @@ import { PostFooterProps, Post } from '../types'; // import any other needed typ
 export default function PostFooter({ post, navigation }: PostFooterProps) {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{post.title}</Text>
+      <View style={styles.topRow}>
+        <Text style={styles.title}>{post.title}</Text>
+        <StatusTag status={post.status}/>
+      </View>
       <Text style={styles.description}>{post.description}</Text>
       <TagArray tags={Filler.post.tags} navigation={navigation} />
     </View>
@@ -31,6 +35,11 @@ export default function PostFooter({ post, navigation }: PostFooterProps) {
 const styles = StyleSheet.create({
   container: {
     margin: Layout.gapSmall,
+  },
+  topRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-start",
   },
   title: {
     fontSize: 20,

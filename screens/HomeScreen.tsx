@@ -44,10 +44,11 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
         });
         setFsPosts(extractedPosts);
     }
-
+    /*
     useEffect(() => {
         getPosts();
     });
+    */
 
     return (
         <SafeAreaView style={styles.container}>
