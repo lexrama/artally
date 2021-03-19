@@ -13,6 +13,7 @@ import ThreadScreen from "../screens/ThreadScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import NotificationsScreen from "../screens/NotificationsScreen";
 import ConversationScreen from "../screens/ConversationScreen";
+import SearchResultsScreen from "../screens/search/ResultsScreen";
 import NotificationButton from "../components/NotificationButton";
 import Colors from '../constants/Colors';
 import Layout from '../constants/Layout';
@@ -59,6 +60,7 @@ function RootNavigator() {
       <Stack.Screen name="Profile" component={ProfileScreen} />
       <Stack.Screen name="Notifications" component={NotificationsScreen} />
       <Stack.Screen name="Conversation" component={ConversationScreen} />
+      <Stack.Screen name="Results" component={SearchResultsScreen} />
     </Stack.Navigator>
   );
 }

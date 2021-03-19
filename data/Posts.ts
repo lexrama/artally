@@ -21,7 +21,7 @@ export const Posts = [
     { // finalized
         id: 1,
         user: "CityOwls",
-        image: "../assets/images/girl_final.png",
+        image: "girl_final",
         title: "Lighting on t-shirt",
         description: "I slapped some color on her! What do ppl think about this lighting, esp on the shirt? I'm a little iffy abt the shadows on her sleeves. (Thank you to @Saturno_22 for the feedback and @izipizi for redlining!!)",
         tags: ["digital", "illustration", "anime", "cell_shading"],
@@ -35,7 +35,7 @@ export const Posts = [
     { // finalized
         id: 2,
         user: "CityOwls",
-        image: "../assets/images/girl_original.jpg",
+        image: "girl_original",
         title: "Help with face proportions",
         description: "Something feels off about this sketch but I can’t figure out what it is. I think it might be the face proportions? Does anyone have ideas?",
         tags: ["digital", "illustration", "anime", "sketch"],
@@ -49,7 +49,7 @@ export const Posts = [
     { // finalized
         id: 3,
         user: "nifty_salamander",
-        image: "../assets/images/geometry.jpg",
+        image: "geometry",
         title: "Cast shadows",
         description: "Hey everyone, I’ve been struggling with where the cast shadows would fall in this image, especially underneath the spheres. Does anyone have any tips? (feel free to insult my crosshatching too... i don’t understand how traditional artists do it 😭)",
         tags: ["traditional", "geometry", "fundamentals", "shadows"],
@@ -63,7 +63,7 @@ export const Posts = [
     { // finalized
         id: 4,
         user: "nifty_salamander",
-        image: "../assets/images/jolteon.jpg",
+        image: "jolteon",
         title: "Color choice",
         description: "Does anyone have thoughts on this yellow/purple color scheme? Does it clash? (also feedback on the face shadows would be nice haha, I thought it would be cool at first but now I’m wondering if it’s too much 😅)",
         tags: ["pokemon", "jolteon", "color", "illustration"],
@@ -77,7 +77,7 @@ export const Posts = [
     { // maybe add some comments? otherwise finalized
         id: 5,
         user: "izipizi",
-        image: "../assets/images/diglett.jpg",
+        image: "diglett",
         title: "diglett render composition",
         description: "can i get some feedback on the framing of this render? i want it to look like ur the size of an ant lmao",
         tags: ["3d", "render", "cgi", "pokemon", "composition"],
@@ -91,7 +91,7 @@ export const Posts = [
     { // finalized
         id: 6,
         user: "izipizi",
-        image: "../assets/images/porygon.jpg",
+        image: "porygon",
         title: "diglett render composition",
         description: "any thoughts on the colors here... going for a little bit of eyestrain but not TOO much yanno",
         tags: ["3d", "render", "cgi", "pokemon", "porygon"],
@@ -105,7 +105,7 @@ export const Posts = [
     { // maybe add some comments? otherwise finalized
         id: 7,
         user: "CityOwls",
-        image: "../assets/images/berries.jpg",
+        image: "berries",
         title: "Atmospheric lighting",
         description: "Just hoping for some feedback on the lighting/colors here... I was going for a cozy autumn feel, do you think this captures it ok?",
         tags: ["digital", "illustration", "human", "lighting", "scene"],
@@ -119,7 +119,7 @@ export const Posts = [
     { // maybe add some comments
         id: 8,
         user: "Saturno_22",
-        image: "../assets/images/togepi.jpg",
+        image: "togepi",
         title: "Togepi illustration",
         description: "Hi everyone! I’m drawing Togepi for the first time and I was hoping for feedback on the way his shell is shaded - I can't help but feel like the shadows are a bit unnatural-looking here.",
         tags: ["digital", "illustration", "cute", "pokemon", "togepi"],
@@ -133,7 +133,7 @@ export const Posts = [
     { // maybe add some comments
         id: 9,
         user: "Saturno_22",
-        image: "../assets/images/pikachu.png",
+        image: "pikachu",
         title: "Pikachu in water illustration",
         description: "Hi guys! This is my first time including a lot of water in an image so I wanted to get input on how realistic the waves look beneath Pikachu",
         tags: ["pastel", "illustration", "water", "pokemon", "ocean"],

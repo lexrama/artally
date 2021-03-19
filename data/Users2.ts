@@ -16,14 +16,14 @@ export type User = {
 export const Users = {
     cityowls: {
         username: "CityOwls",
-        icon: "../assets/images/cityowls.png",
+        icon: "cityowls",
         tags: ["digital", "illustration", "anime", "human"],
         numPoints: 115,
         posts: [ // was 1,7
             { // post id 1
                 id: 1,
                 user: "CityOwls",
-                image: "../assets/images/girl_final.png",
+                image: "girl_final",
                 title: "Lighting on t-shirt",
                 description: "I slapped some color on her! What do ppl think about this lighting, esp on the shirt? I'm a little iffy abt the shadows on her sleeves. (Thank you to @Saturno_22 for the feedback and @izipizi for redlining!!)",
                 tags: ["digital", "illustration", "anime", "cell_shading"],

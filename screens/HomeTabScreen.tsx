@@ -29,7 +29,7 @@ const extractPost = (data: any) => {
 
 export default function HomeTabScreen({ navigation }: HomeTabParamList) {
     const emptyPostsArray: Post[] = [];
-    
+
     const [loading, setLoading] = useState(false);
     const [fsPosts, setFsPosts] = useState(emptyPostsArray);
 
@@ -52,15 +52,15 @@ export default function HomeTabScreen({ navigation }: HomeTabParamList) {
     */
 
     return (
-        <SafeAreaView style={styles.container}>
-            <Feed
-                feedItems={fsPosts} // eventually want this to be fsPosts
-                header={true}
-                loading={loading}
-                navigation={navigation}
-            />
+        <SafeAreaView>
+          <Feed
+            feedItems={Posts} // was feedData, eventually want this to be fsPosts
+            header={true}
+            loading={loading}
+            navigation={navigation}
+          />
         </SafeAreaView>
-    );
+      );
 }
 
 const styles = StyleSheet.create({

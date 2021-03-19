@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet } from 'react-native';
+import { SafeAreaView, StyleSheet } from 'react-native';
 import { Posts } from '../data/Posts';
 import firestore from "../firebase";
 import { Post, ProfileScreenProps } from '../types';
@@ -14,7 +14,7 @@ export default function ProfileScreen({ navigation }: ProfileScreenProps) {
   const [loading, setLoading] = useState(false);
   
   return (
-    <View>
+    <SafeAreaView>
       <ProfileHeader user={Filler.user} navigation={navigation}/>
       <Feed
         feedItems={Posts} // was feedData, eventually want this to be fsPosts
@@ -22,7 +22,7 @@ export default function ProfileScreen({ navigation }: ProfileScreenProps) {
         loading={loading}
         navigation={navigation}
       />
-    </View>
+    </SafeAreaView>
   );
 }
 

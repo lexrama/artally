@@ -51,8 +51,8 @@ const styles = StyleSheet.create({
   },
   container: {
     flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "flex-start",
+    justifyContent: "center",
+    alignItems: "center",
     padding: Layout.gapSmall,
     backgroundColor: Colors.artally.white,
     borderBottomWidth: 1,

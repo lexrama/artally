@@ -10,13 +10,13 @@ export type User = {
   icon: string; // ex. "togepi"
   tags: string[];
   numPoints: number;
-  posts: string[]; // array of IDs; get length for numPosts
+  posts: number[]; // array of IDs; get length for numPosts
   following: string[]; // array of usernames; get length for numFollowing
   followers: string[]; // array of usernames; get length for numFollowers
 }
 
 export type Post = {
-  id: string; // make this a unique number starting with 0, ex. "001"
+  id: number; // make this a unique number starting with 0, ex. "001"
   user: string; // username of user who posted the comment
   image: string; // ex. "togepi"
   title: string;
@@ -24,15 +24,15 @@ export type Post = {
   tags: string[]; // ex. [digital, illustration, shading] -- DON'T put the # symbol
   timestamp: string; // like Twitter, ex. "31s", "5m", "7h", "2d", "Feb 21", "Mar 20, 2010"
   status: number; // 1 for Open, 2 for Open (UPDATE), 3 for Closed (do we need to change these based on Heuristic Eval?)
-  comments: string[]; // array of IDs of comments in chronological order
-  previousVersions: string[]; // array of IDs of previous versions IN THE ORDER THEY SHOULD BE DISPLAYED, ie. reverse-chron
+  comments: number[]; // array of IDs of comments in chronological order
+  previousVersions: number[]; // array of IDs of previous versions IN THE ORDER THEY SHOULD BE DISPLAYED, ie. reverse-chron
                               // stored ONLY in the most recent post; ie. most recent post should list all previous versions
                               // in this array, but older versions should have an EMPTY previousVersions array
 }
 
 
 export type Comment = {
-  id: string; // make this a unique number starting with 1, ex. "101"
+  id: number; // make this a unique number starting with 1, ex. "101"
   post: string; // ID of the post it belongs to, ex. "001"
   user: string; // username of person commenting
   op: boolean // true if it's from the original poster, false otherwise
@@ -43,7 +43,7 @@ export type Comment = {
   upvoted: boolean; // defaults to false
   downvoted: boolean; // defaults to false
   image: string; // image attachment, ex. "togepi" (empty string if none)
-  replies: string[]; // array of IDs of replies to this comment in chronological order;
+  replies: number[]; // array of IDs of replies to this comment in chronological order;
                      // should be EMPTY if this itself is a reply, because we're only doing 1 layer of nesting
 }
 
@@ -174,6 +174,7 @@ export type RootStackParamList = {
   Profile: undefined;
   Notifications: undefined;
   Conversation: undefined;
+  Results: undefined;
 };
 
 export type BottomTabParamList = {
@@ -243,6 +244,10 @@ export type NotificationScreenProps = {
 }
 
 export type ConversationScreenProps = {
+  navigation: any;
+}
+
+export type SearchResultsScreenProps = {
   navigation: any;
 }
 
