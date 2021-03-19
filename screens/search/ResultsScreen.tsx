@@ -8,30 +8,14 @@ import Colors from '../../constants/Colors';
 
 const Tab = createMaterialTopTabNavigator();
 
-function PostsScreen() {
-    return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Feed!</Text>
-        </View>
-    );
-}
-  
-function UsersScreen() {
-    return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Notifications!</Text>
-        </View>
-    );
-}
-
 function MyTabs() {
     return (
         <Tab.Navigator
             initialRouteName="Posts"
             tabBarOptions={{
-                activeTintColor: '#e91e63',
-                labelStyle: { fontSize: 12 },
-                style: { backgroundColor: 'powderblue' },
+                activeTintColor: Colors.artally.basicMid,
+                labelStyle: { fontSize: 18 },
+                style: { backgroundColor: Colors.artally.basicLight },
             }}
             >
             <Tab.Screen
