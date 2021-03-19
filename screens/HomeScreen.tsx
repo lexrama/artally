@@ -21,7 +21,6 @@ const extractPost = (data: any) => {
         timestamp: data.timestamp,
         status: data.status,
         comments: data.comments,
-        topLevel: data.topLevel,
         previousVersions: data.previousVersions,
     }
     return post;

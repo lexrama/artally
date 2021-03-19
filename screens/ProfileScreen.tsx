@@ -14,9 +14,8 @@ export default function ProfileScreen({ navigation }: ProfileScreenProps) {
   const [loading, setLoading] = useState(false);
   
   return (
-    <View style={styles.container}>
+    <View>
       <ProfileHeader user={Filler.user} navigation={navigation}/>
-      <Notification post={Filler.post} user={Filler.user} text="This is a notification!" timestamp="2h" navigation={navigation}/>
       <Feed
         feedItems={Posts} // was feedData, eventually want this to be fsPosts
         header={false}

@@ -12,9 +12,10 @@ import Colors from '../constants/Colors';
 import Layout from '../constants/Layout';
 import Images from '../constants/Images';
 import Filler from "../data/Filler";
+import { UploadTabParamList } from '../types';
 
 
-export default function UploadTabScreen() {
+export default function UploadTabScreen({ navigation }: UploadTabParamList) {
   const [title, onChangeTitle] = React.useState("");
   const [tagStr, onChangeTagStr] = React.useState("");
   const [description, onChangeDescription] = React.useState("");
@@ -59,7 +60,7 @@ export default function UploadTabScreen() {
           // NEED TO MAKE KEYBOARD DISMISS!!!!
         />
       </View>
-      <Button onPress={() => console.log("New post uploaded!")} title="Post" type={"inactive"} navigation={null} />
+      <Button onPress={() => console.log("New post uploaded!")} title="Post" type={"active"} navigation={navigation} />
     </View>
   );
 }

@@ -8,6 +8,7 @@ import { Image } from "react-native";
 export type User = {
   username: string;
   icon: string; // ex. "togepi"
+  tags: string[];
   numPoints: number;
   posts: string[]; // array of IDs; get length for numPosts
   following: string[]; // array of usernames; get length for numFollowing
@@ -114,6 +115,13 @@ export type NotificationProps = {
   navigation: any;
 }
 
+export type MessagePreviewProps = {
+  user: User;
+  text: string;
+  timestamp: string;
+  navigation: any;
+}
+
 export type UserIconProps = {
   user: User;
   size: string; // "small" or "large"
@@ -146,6 +154,15 @@ export type ButtonProps = {
   navigation: any;
 }
 
+export type NotificationButtonProps = {
+  //navigation: any;
+}
+
+export type MessageProps = {
+  text: string;
+  navigation: any;
+}
+
 
 
 
@@ -157,6 +174,7 @@ export type RootStackParamList = {
   Thread: undefined;
   Profile: undefined;
   Notifications: undefined;
+  Conversation: undefined;
 };
 
 export type BottomTabParamList = {
@@ -167,6 +185,7 @@ export type BottomTabParamList = {
   Upload: undefined;
   Messages: undefined;
   Profile: undefined;
+  navigation: any;
 };
 
 export type TabOneParamList = {
@@ -179,22 +198,27 @@ export type TabTwoParamList = {
 
 export type HomeTabParamList = {
   HomeTabScreen: undefined;
+  navigation: any;
 };
 
 export type SearchTabParamList = {
   SearchTabScreen: undefined;
+  navigation: any;
 };
 
 export type UploadTabParamList = {
   UploadTabScreen: undefined;
+  navigation: any;
 };
 
 export type MessagesTabParamList = {
   MessagesTabScreen: undefined;
+  navigation: any;
 };
 
 export type MyProfileTabParamList = {
   MyProfileTabScreen: undefined;
+  navigation: any;
 };
 
 export type HomeScreenProps = {
@@ -219,6 +243,9 @@ export type NotificationScreenProps = {
   navigation: any;
 }
 
+export type ConversationScreenProps = {
+  navigation: any;
+}
 
 
 

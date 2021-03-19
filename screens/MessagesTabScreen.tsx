@@ -3,13 +3,15 @@ import { StyleSheet } from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
+import MessagePreview from "../components/MessagePreview";
+import Filler from '../data/Filler';
+import { MessagesTabParamList } from '../types';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
-export default function MessagesTabScreen() {
+export default function MessagesTabScreen({ navigation }: MessagesTabParamList) {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Messages</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/MessagesTabScreen.tsx" />
+        <MessagePreview user={Filler.user} text="It looks good to me! I think the sha..." timestamp="5h" navigation={navigation} />
     </View>
   );
 }
@@ -17,8 +19,8 @@ export default function MessagesTabScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
   },
   title: {
     fontSize: 20,

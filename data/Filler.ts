@@ -10,13 +10,13 @@ const post: Post = {
     timestamp: "Feb 24",
     status: 2,
     comments: ["101"],
-    topLevel: true,
     previousVersions: ["002"]
 }
 
 const user: User = {
     username: "CityOwls",
     icon: "../assets/images/cityowls.png",
+    tags: ["digital", "illustration", "anime", "human"],
     numPoints: 24,
     posts: ["001", "002"],
     following: [],
@@ -34,9 +34,7 @@ const comment: Comment = {
     downvotes: 0,
     upvoted: false,
     downvoted: false,
-    hasImage: false,
     image: "",
-    topLevel: true,
     replies: [],
 }
 

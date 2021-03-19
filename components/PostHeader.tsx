@@ -22,9 +22,13 @@ import UserIcon from './UserIcon';
 export default function PostHeader({ post, navigation }: PostHeaderProps) {
   return (
     <View style={styles.container}>
-      <UserIcon user={Filler.user} size={"small"} navigation={navigation} />
-      <Text style={styles.username}>username</Text>
-      <Ionicons name="ellipsis-vertical" size={20} color={Colors.artally.basicDark} />
+      <View style={styles.left}>
+        <UserIcon user={Filler.user} size={"small"} navigation={navigation} />
+        <Text style={styles.username}>username</Text>
+      </View>
+      <View style={styles.right}>
+        <Ionicons name="ellipsis-vertical" size={20} color={Colors.artally.basicDark} />
+      </View>
     </View>
   );
 }
@@ -33,7 +37,20 @@ export default function PostHeader({ post, navigation }: PostHeaderProps) {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
+    flex: 1,
+  },
+  left: {
+    flexDirection: "row",
+    flex: 1,
     justifyContent: "flex-start",
+    alignItems: "center",
+    backgroundColor: Colors.artally.white,
+    padding: Layout.gapSmall,
+  },
+  right: {
+    flexDirection: "row",
+    flex: 1,
+    justifyContent: "flex-end",
     alignItems: "center",
     backgroundColor: Colors.artally.white,
     padding: Layout.gapSmall,

@@ -1,47 +1,71 @@
-import * as React from 'react';
-import { StyleSheet } from 'react-native';
 
-import EditScreenInfo from '../components/EditScreenInfo';
-import { Text, View } from '../components/Themed';
+import React, { useEffect, useState } from "react";
+import { StyleSheet, Text, View, SafeAreaView, ActivityIndicator, Button } from "react-native";
 import Feed from '../components/Feed';
-import HomeScreen from './HomeScreen';
-import ThreadScreen from '../screens/ThreadScreen';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import FeedItem from '../components/FeedItem';
+import { HomeScreenProps } from "../types";
+import { feedData } from '../data/FeedData';
+import { Posts } from '../data/Posts';
+import firestore from "../firebase";
+import { Post, HomeTabParamList } from '../types';
 
-export default function HomeTabScreen() {
 
-  const Stack = createStackNavigator();
-  const navigationRef = React.useRef(null);
+const extractPost = (data: any) => {
+    let post: Post = {
+        id: data.id,
+        user: data.user,
+        image: data.image,
+        title: data.title,
+        description: data.description,
+        tags: data.tags,
+        timestamp: data.timestamp,
+        status: data.status,
+        comments: data.comments,
+        previousVersions: data.previousVersions,
+    }
+    return post;
+}
 
-  return (
-  <NavigationContainer independent={true}>
-    <Stack.Navigator
-      screenOptions={{
-        headerShown: true,
-      }}
-    >
-      <Stack.Screen name="HomeFeed" component={HomeScreen} />
-      <Stack.Screen name="Thread" component={ThreadScreen} />
-    </Stack.Navigator>
-  </NavigationContainer>
-  );
+
+export default function HomeTabScreen({ navigation }: HomeTabParamList) {
+    const emptyPostsArray: Post[] = [];
+    
+    const [loading, setLoading] = useState(false);
+    const [fsPosts, setFsPosts] = useState(emptyPostsArray);
+
+    const getPosts = async () => {
+        let postsCollRef = firestore.collection("posts");
+        let postDocs = await postsCollRef.get();
+        let extractedPosts: Post[] = [];
+        postDocs.forEach(postDoc => {
+            let data = postDoc.data();
+            let extractedPost: Post = extractPost(data);
+            extractedPosts.push(extractedPost);
+        });
+        setFsPosts(extractedPosts);
+    }
+
+    useEffect(() => {
+        getPosts();
+    });
+
+    return (
+        <SafeAreaView style={styles.container}>
+            <Feed
+                feedItems={Posts} // eventually want this to be fsPosts
+                header={true}
+                loading={loading}
+                navigation={navigation}
+            />
+        </SafeAreaView>
+    );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 100,
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-  },
+    container: {
+        flex: 1,
+        backgroundColor: "#fff",
+        justifyContent: "flex-start",
+        alignItems: "center",
+    },
 });

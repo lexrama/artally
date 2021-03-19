@@ -42,13 +42,13 @@ export default function Feed({ feedItems, header, loading, navigation }: FeedPro
     );
   } else {
     return (
-      <SafeAreaView style={styles.container}>
+      <View style={styles.container}>
         <FlatList style={styles.list}
           data={feedItems} // was feedItems
           renderItem={({ item }) => renderItem(item)}
           keyExtractor={(item) => item.id}
         />
-      </SafeAreaView>
+      </View>
     );
   }
 

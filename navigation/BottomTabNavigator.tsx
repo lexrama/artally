@@ -6,15 +6,17 @@ import * as React from 'react';
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import HomeTabScreen from '../screens/HomeTabScreen';
+import HomeScreen from '../screens/HomeScreen';
 import SearchTabScreen from '../screens/search/SearchTabScreen';
 import UploadTabScreen from '../screens/UploadTabScreen';
 import MessagesTabScreen from '../screens/MessagesTabScreen';
 import MyProfileTabScreen from '../screens/MyProfileTabScreen';
+import ProfileScreen from '../screens/ProfileScreen';
 import { BottomTabParamList, TabOneParamList, TabTwoParamList, HomeTabParamList, SearchTabParamList, UploadTabParamList, MessagesTabParamList, MyProfileTabParamList } from '../types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
-export default function BottomTabNavigator() {
+export default function BottomTabNavigator({ navigation }: BottomTabParamList) {
   const colorScheme = useColorScheme();
 
   const headerOptions = {

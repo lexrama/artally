@@ -52,7 +52,7 @@ export default function PostCard({ post, header, navigation }: PostCardProps) {
 
 const styles = StyleSheet.create({
   container: {
-    borderColor: Colors.artally.basicMid,
+    borderColor: Colors.artally.basicLight,
     borderTopWidth: 1,
     paddingBottom: Layout.gapSmall,
   },
