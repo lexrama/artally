@@ -8,7 +8,7 @@ export default function ResultsUsersScreen({ navigation }:SearchScreenProps ) {
 
     return (
         <SafeAreaView style={styles.container}>
-            
+            <Text>User Results</Text>
         </SafeAreaView>
     );
 }

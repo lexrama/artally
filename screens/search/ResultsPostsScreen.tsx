@@ -8,7 +8,7 @@ export default function ResultsPostsScreen({ navigation }:SearchScreenProps ) {
 
     return (
         <SafeAreaView style={styles.container}>
-            
+            <Text>Post Results</Text>
         </SafeAreaView>
     );
 }
