@@ -13,8 +13,12 @@ function MyTabs() {
         <Tab.Navigator
             initialRouteName="Posts"
             tabBarOptions={{
-                activeTintColor: Colors.artally.basicMid,
-                labelStyle: { fontSize: 18 },
+                activeTintColor: Colors.artally.action,
+                inactiveTintColor: Colors.artally.basicDark,
+                labelStyle: { 
+                    fontSize: 18,
+                    fontWeight: 'bold'
+                },
                 style: { backgroundColor: Colors.artally.basicLight },
             }}
             >
@@ -35,7 +39,6 @@ function MyTabs() {
 
 export default function ResultsScreen({ navigation }:SearchScreenProps ) {
     const [loading, setLoading] = useState(false);
-
     return (
         <MyTabs />
     );
