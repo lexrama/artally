@@ -11,6 +11,8 @@ import { Text, View } from './Themed';
 import Colors from '../constants/Colors';
 import Layout from '../constants/Layout';
 import { ProfileHeaderProps } from '../types'; // import any other needed types from types.tsx here
+import UserIcon from './UserIcon';
+import Filler from '../data/Filler';
 // to use a component from this project, add: import MyComponent from '../components/MyComponent';
 
 
@@ -18,7 +20,7 @@ import { ProfileHeaderProps } from '../types'; // import any other needed types 
 export default function ProfileHeader({ user, navigation }: ProfileHeaderProps) {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>This is a profile header!</Text>
+      
     </View>
   );
 }
@@ -29,6 +31,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'grey',
     width: '100%',
     margin: 5,
+    flexDirection: "row",
   },
   text: {
     fontSize: 20,

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Ionicons } from '@expo/vector-icons';
 import {
   StyleSheet,
   SafeAreaView,
@@ -18,7 +19,10 @@ import { ScreenHeaderProps } from '../types'; // import any other needed types f
 export default function ScreenHeader({ title, back, navigation }: ScreenHeaderProps) {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>This is a screen header!</Text>
+      <Text style={styles.text}>Custom Header</Text>
+      <TouchableOpacity>
+        <Ionicons name="notifications-outline" size={20} color={Colors.artally.basicDark} />
+      </TouchableOpacity>
     </View>
   );
 }
@@ -26,13 +30,13 @@ export default function ScreenHeader({ title, back, navigation }: ScreenHeaderPr
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'grey',
-    width: '100%',
-    margin: 5,
+    backgroundColor: Colors.artally.basicLight,
+    height: Layout.navbarHeight,
   },
   text: {
-    fontSize: 20,
-    fontWeight: 'normal',
+    fontSize: Layout.textLarge,
+    fontWeight: 'bold',
+    color: Colors.artally.basicDark,
   }
   // edit those styles or define more here!
 });

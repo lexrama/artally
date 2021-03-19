@@ -108,6 +108,7 @@ export type StatusTagProps = {
 
 export type NotificationProps = {
   post: Post;
+  user: User;
   text: string;
   timestamp: string;
   navigation: any;
@@ -211,6 +212,10 @@ export type ProfileScreenProps = {
 
 export type ThreadScreenProps = {
   post: Post; // was FeedItemData
+  navigation: any;
+}
+
+export type NotificationScreenProps = {
   navigation: any;
 }
 

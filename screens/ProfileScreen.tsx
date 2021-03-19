@@ -6,15 +6,17 @@ import { Post, ProfileScreenProps } from '../types';
 import EditScreenInfo from '../components/EditScreenInfo';
 import ProfileHeader from '../components/ProfileHeader';
 import Feed from '../components/Feed';
+import Notification from '../components/Notification';
 import { Text, View } from '../components/Themed';
 import Filler from '../data/Filler';
 
-export default function MyProfileTabScreen({ navigation }: ProfileScreenProps) {
+export default function ProfileScreen({ navigation }: ProfileScreenProps) {
   const [loading, setLoading] = useState(false);
   
   return (
     <View style={styles.container}>
-      <ProfileHeader user={Filler.user} navigation={null}/>
+      <ProfileHeader user={Filler.user} navigation={navigation}/>
+      <Notification post={Filler.post} user={Filler.user} text="This is a notification!" timestamp="2h" navigation={navigation}/>
       <Feed
         feedItems={Posts} // was feedData, eventually want this to be fsPosts
         header={false}

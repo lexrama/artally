@@ -2,14 +2,16 @@ import * as React from 'react';
 import { StyleSheet } from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
+import Notification from '../components/Notification';
 import { Text, View } from '../components/Themed';
+import Filler from '../data/Filler';
+import { NotificationScreenProps } from '../types'
 
-export default function NotificationScreen() {
+export default function NotificationScreen({ navigation }: NotificationScreenProps) {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Notifications</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/NotificationScreen.tsx" />
+      <Notification post={Filler.post} user={Filler.user} text="It looks good to me! I think the sha..." timestamp="5h" navigation={navigation}/>
+      <Notification post={Filler.post} user={Filler.user} text="I really like these colors! the reddi..." timestamp="6h" navigation={navigation}/>
     </View>
   );
 }

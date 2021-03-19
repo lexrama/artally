@@ -33,9 +33,11 @@
     "react-native-elements": "^3.3.2",
     "react-native-gesture-handler": "~1.8.0",
     "react-native-ionicons": "^4.6.5",
+    "react-native-pager-view": "^5.1.2",
     "react-native-safe-area-context": "3.1.9",
     "react-native-scalable-image": "^1.1.0",
     "react-native-screens": "~2.15.0",
+    "react-native-tab-view": "^3.0.0",
     "react-native-web": "~0.13.12"
   },
   "devDependencies": {
