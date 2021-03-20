@@ -229,6 +229,9 @@ export type MessageProps = {
   navigation: any;
 }
 
+export type CommentFormProps = {
+  navigation: any;
+}
 
 
 

@@ -14,7 +14,7 @@ import { Text, View } from './Themed';
 import Colors from '../constants/Colors';
 import Layout from '../constants/Layout';
 import Filler from "../data/Filler";
-import { CommentProps } from '../types'; // import any other needed types from types.tsx here
+import { CommentFormProps } from '../types'; // import any other needed types from types.tsx here
 import UserIcon from './UserIcon';
 import { Users } from '../data/Users2';
 // to use a component from this project, add: import MyComponent from '../components/MyComponent';
@@ -34,7 +34,7 @@ const confirm = () =>
 
 
 // see types.tsx or the doc for the data types of the props; let me know if you need to change them
-export default function CommentForm({ navigation }: CommentProps) {
+export default function CommentForm({ navigation }: CommentFormProps) {
     const user = Users.nifty_salamander;
 
     const [text, onChangeText] = React.useState("");
@@ -43,18 +43,24 @@ export default function CommentForm({ navigation }: CommentProps) {
             <UserIcon user={user} size={"small"} navigation={navigation} />
             <View style={styles.body}>
                 <Text style={styles.username}>{user.username}</Text>
-                <TextInput
-                    style={styles.textInput}
-                    onChangeText={(inputText) => onChangeText(inputText)}
-                    onSubmitEditing={() => confirm()}
-                    value={text}
-                    placeholder="ex. traditional, illustration, perspective"
-                />
-            </View>
-            <View style={styles.buttons}>
-                <Ionicons name="chevron-up" size={18} color={Colors.artally.basicDark} />
-                <Ionicons name="chevron-down" size={18} color={Colors.artally.basicDark} />
-                <Ionicons name="at-outline" size={18} color={Colors.artally.basicDark} />
+                <View style={styles.bottomRow}>
+                    <TextInput
+                        style={styles.textInput}
+                        onChangeText={(inputText) => onChangeText(inputText)}
+                        onSubmitEditing={() => confirm()}
+                        value={text} // was "text"
+                        placeholder="Leave a comment..."
+                    />
+                    <TouchableOpacity onPress={() => confirm()}>
+                        <Ionicons name="send-outline" size={25} color={Colors.artally.action} />
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.buttons}>
+                    <Ionicons name="camera-outline" size={25} color={Colors.artally.action} />
+                    <Ionicons name="image-outline" size={25} color={Colors.artally.action} />
+                    <Ionicons name="happy-outline" size={25} color={Colors.artally.action} />
+                </View>
+
             </View>
         </View>
     );
@@ -84,16 +90,27 @@ const styles = StyleSheet.create({
         margin: Layout.gapSmall,
         backgroundColor: Colors.artally.white,
     },
-    buttons: {
-        flex: 1,
-    },
     textInput: {
-        width: "100%",
         borderColor: Colors.artally.basicMidLight,
         borderRadius: Layout.radiusLarge,
         borderWidth: 1,
         fontSize: Layout.textMid,
         color: Colors.artally.basicDark,
         padding: Layout.gapSmall,
+        marginHorizontal: Layout.gapSmall,
+        width: "95%"
+    },
+    bottomRow: {
+        flexDirection: "row",
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginHorizontal: Layout.gapLarge,
+        marginTop: Layout.gapSmall,
+    },
+    buttons: {
+        flexDirection: "row",
+        alignItems: 'flex-start',
+        justifyContent: 'flex-start',
+        marginHorizontal: Layout.gapLarge,
     },
 });

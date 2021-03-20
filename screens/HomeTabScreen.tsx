@@ -56,9 +56,12 @@ export default function HomeTabScreen({ navigation }: HomeTabParamList) {
 
     let allPosts: Post[] = [];
 
+    /*
     Users.cityowls.posts.forEach(post =>
         allPosts.push(post)
     );
+    */
+    allPosts.push(Users.cityowls.posts[0]);
     Users.saturno_22.posts.forEach(post =>
         allPosts.push(post)
     );

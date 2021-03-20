@@ -17,7 +17,6 @@ import UserIcon from './UserIcon';
 import Images from '../constants/Images';
 // to use a component from this project, add: import MyComponent from '../components/MyComponent';
 
-
 // see types.tsx or the doc for the data types of the props; let me know if you need to change them
 export default function Notification({ post, user, text, timestamp, navigation }: NotificationProps) {
   return (
