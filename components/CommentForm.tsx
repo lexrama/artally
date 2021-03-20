@@ -87,7 +87,8 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "flex-start",
         alignItems: "flex-start",
-        margin: Layout.gapSmall,
+        marginVertical: Layout.gapSmall,
+        marginHorizontal: Layout.gapLarge,
         backgroundColor: Colors.artally.white,
     },
     textInput: {

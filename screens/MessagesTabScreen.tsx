@@ -12,7 +12,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 export default function MessagesTabScreen({ navigation }: MessagesTabParamList) {
   return (
     <View style={styles.container}>
-        <MessagePreview user={Users.saturno_22} text="It looks good to me! Where did you learn how to draw fire?! The glow effect is so lifelike!" timestamp="5h" navigation={navigation} />
+        <MessagePreview user={Users.saturno_22} text="Where did you learn how to draw fire?! The glow effect is so lifelike!" timestamp="5h" navigation={navigation} />
     </View>
   );
 }

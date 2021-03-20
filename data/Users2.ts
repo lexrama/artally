@@ -48,7 +48,7 @@ export const Users = {
                     },
                 ],
                 topLevel: true,
-                previousVersions: [2, 7]
+                previousVersions: [2, 7] // was 2,7
             },
             { // post 2 (previous)
                 id: 2,

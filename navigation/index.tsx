@@ -17,6 +17,7 @@ import SearchResultsScreen from "../screens/search/ResultsScreen";
 import NotificationButton from "../components/NotificationButton";
 import Colors from '../constants/Colors';
 import Layout from '../constants/Layout';
+import DBHelper from '../data/DBHelper';
 
 // If you are not familiar with React Navigation, we recommend going through the
 // "Fundamentals" guide: https://reactnavigation.org/docs/getting-started
@@ -37,6 +38,8 @@ const Stack = createStackNavigator<RootStackParamList>();
 // had mode="modal" in front of screenOptions vvvvv
 function RootNavigator() {
   const navigationRef = React.useRef(null);
+
+  DBHelper.createDatabase();
 
   return (
     <Stack.Navigator screenOptions={{

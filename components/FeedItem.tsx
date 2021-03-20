@@ -21,13 +21,13 @@ import PostCard from "./PostCard";
 
 export default function FeedItem({post, header, navigation}: FeedItemProps) {
   const threadProps: ThreadScreenProps = {
-    post: post,
+    postID: post.id,
     navigation: navigation,
   }
-  
+
   return (
-    <TouchableOpacity style={styles.container} onPress={() => navigation.navigate('Thread', threadProps)}>
-      <PostCard post={post} header={header} navigation={navigation} />
+    <TouchableOpacity style={styles.container} onPress={() => navigation.navigate("Thread", threadProps)}>
+      <PostCard post={post} header={header} clickable={true} navigation={navigation} />
     </TouchableOpacity>
   );
 

@@ -62,7 +62,7 @@ export default function UserIcon({ user, size, navigation }: UserIconProps) {
   };
   */
 
-  console.log("USERICON: ", user);
+  //console.log("USERICON: ", user);
 
   if (size == "small") {
     return (

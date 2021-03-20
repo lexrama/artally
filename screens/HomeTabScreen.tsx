@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View, SafeAreaView, ActivityIndicator, Button } from "react-native";
 import Feed from '../components/Feed';
 import FeedItem from '../components/FeedItem';
-import { HomeScreenProps } from "../types";
 import { feedData } from '../data/FeedData';
 import { Users } from '../data/Users2';
 import { Posts } from '../data/Posts';
 import firestore from "../firebase";
-import { Post, HomeTabParamList } from '../types';
+import { Post, HomeTabParamList, HomeScreenProps, User } from '../types';
+import DBHelper from '../data/DBHelper';
 
 /*
 const extractPost = (data: any) => {
@@ -30,9 +30,11 @@ const extractPost = (data: any) => {
 
 export default function HomeTabScreen({ navigation }: HomeTabParamList) {
     const emptyPostsArray: Post[] = [];
+    const emptyUsersArray: User[] = [];
 
     const [loading, setLoading] = useState(false);
     const [fsPosts, setFsPosts] = useState(emptyPostsArray);
+    const [fsUsers, setFsUsers] = useState(emptyUsersArray);
 
     /*
     const getPosts = async () => {
@@ -52,15 +54,34 @@ export default function HomeTabScreen({ navigation }: HomeTabParamList) {
         getPosts();
     });
     */
-    
+
+
+    const getUsers = async () => {
+        let usersCollRef = firestore.collection("users");
+        let userDocs = await usersCollRef.get();
+        let extractedUsers: User[] = [];
+        userDocs.forEach(userDoc => {
+            let data = userDoc.data();
+            let extractedUser: User = DBHelper.extractUser(data);
+            extractedUsers.push(extractedUser);
+        });
+        setFsUsers(extractedUsers);
+    }
+
+    useEffect(() => {
+        getUsers();
+    });
+
 
     let allPosts: Post[] = [];
+    fsUsers.forEach(fsUser => {
+        fsUser.posts.forEach(post => {
+            allPosts.push(post);
+        });
+    });
+
 
     /*
-    Users.cityowls.posts.forEach(post =>
-        allPosts.push(post)
-    );
-    */
     allPosts.push(Users.cityowls.posts[0]);
     Users.saturno_22.posts.forEach(post =>
         allPosts.push(post)
@@ -68,6 +89,7 @@ export default function HomeTabScreen({ navigation }: HomeTabParamList) {
     Users.izipizi.posts.forEach(post =>
         allPosts.push(post)
     );
+    */
 
     return (
         <SafeAreaView>

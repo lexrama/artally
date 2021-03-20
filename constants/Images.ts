@@ -16,6 +16,7 @@ const Images = {
     berries: require("../assets/images/berries.jpg"),
     diglett: require("../assets/images/diglett.jpg"),
     porygon: require("../assets/images/porygon.jpg"),
+    spacer: require("../assets/images/spacer.png"),
   };
   
   export default Images;

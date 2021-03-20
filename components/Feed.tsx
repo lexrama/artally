@@ -30,7 +30,7 @@ export default function Feed({ feedItems, header, loading, navigation }: FeedPro
 
   const renderItem = (item: Post) => { // should take in a Post
     return (
-      <FeedItem post={item} header={header} navigation={navigation} />
+      <PostCard post={item} header={header} clickable={true} navigation={navigation} />
     );
   };
 
@@ -46,7 +46,7 @@ export default function Feed({ feedItems, header, loading, navigation }: FeedPro
         <FlatList style={styles.list}
           data={feedItems} // was feedItems
           renderItem={({ item }) => renderItem(item)}
-          //keyExtractor={(item) => item.id}
+          //keyExtractor={(item, index) => item.id.toString}
         />
       </View>
     );

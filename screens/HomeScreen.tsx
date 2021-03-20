@@ -1,4 +1,4 @@
-
+// OLD FILE
 import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View, SafeAreaView, ActivityIndicator, Button } from "react-native";
 import Feed from '../components/Feed';
@@ -9,7 +9,7 @@ import { Posts } from '../data/Posts';
 import firestore from "../firebase";
 import { Post } from '../types';
 
-
+/*
 const extractPost = (data: any) => {
     let post: Post = {
         id: data.id,
@@ -25,14 +25,14 @@ const extractPost = (data: any) => {
     }
     return post;
 }
-
+*/
 
 export default function HomeScreen({ navigation }: HomeScreenProps) {
     const emptyPostsArray: Post[] = [];
     
     const [loading, setLoading] = useState(false);
     const [fsPosts, setFsPosts] = useState(emptyPostsArray);
-
+    /*
     const getPosts = async () => {
         let postsCollRef = firestore.collection("posts");
         let postDocs = await postsCollRef.get();
@@ -44,7 +44,7 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
         });
         setFsPosts(extractedPosts);
     }
-    /*
+    
     useEffect(() => {
         getPosts();
     });

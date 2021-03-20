@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Image, SafeAreaView, StyleSheet, FlatList, ScrollView } from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
@@ -16,53 +16,79 @@ import CommentForm from '../components/CommentForm';
 import Colors from '../constants/Colors';
 import Layout from '../constants/Layout';
 
-export default function ThreadScreen({ post, navigation }: ThreadScreenProps) {
-    const dpost1 = Users.cityowls.posts[0];
-    const dpost2 = Users.cityowls.posts[1];
 
 
-    /*
-    const data: (Post | Comment)[] = [];
+export default function ThreadScreen({ postID, navigation }: ThreadScreenProps) {
+    const [iHaveCommented, setIHaveCommented] = useState(false);
+    const [myCommentText, setMyCommentText] = useState("");
 
-    data.push(defaultPost);
-    defaultPost.comments.forEach( comment => data.push(comment));
+    let post = Users.cityowls.posts[0];
+    console.log(postID);
+    if (postID == 1) {
+        post = Users.cityowls.posts[0];
+    } else if (postID == 2) {
+        post = Users.cityowls.posts[1];
+    } else if (postID == 3) {
+        post = Users.nifty_salamander.posts[0];
+    } else if (postID == 4) {
+        post = Users.nifty_salamander.posts[1];
+    } else if (postID == 5) {
+        post = Users.izipizi.posts[0];
+    } else if (postID == 6) {
+        post = Users.izipizi.posts[1];
+    } else if (postID == 7) {
+        post = Users.cityowls.posts[2];
+    } else if (postID == 8) {
+        post = Users.saturno_22.posts[0];
+    } else if (postID == 9) {
+        post = Users.saturno_22.posts[1];
+    } 
 
-    const renderItem = (item: (Post | Comment)) => { // should take in a Post
-        let type: string = typeof item;
-        console.log(type);
-        if (type == "Post") {
-            return (
-                <PostCard post={item as Post} header={true} navigation={navigation} />
-            );
-        } else if (type == "Comment"){
-            return (
-                <CommentCard comment={item as Comment} navigation={navigation} />
-            );
-        }
-    };
-    return (
-        <View style={styles.container}>
-            <FlatList
-                data={data} // was feedItems
-                renderItem={({ item }) => renderItem(item)}
-                //keyExtractor={(item) => item.id}
-            />
-        </View>
-    );
+
+    /*let commentsListArr = post.comments.map(comment => (
+        <CommentCard key={comment.id}/>
+    )
     */
+
+    const renderComments = (postToRender: Post) => {
+        let renderedComments: any = [];
+        postToRender.comments.forEach(comment => {
+            renderedComments.push(<CommentCard comment={comment} navigation={navigation} />);
+        });
+        return renderedComments;
+    }
+
+    let commentForm;
+    if (post.status != 3) commentForm = <CommentForm navigation={navigation} />;
+
+    let timeDivider;
+    let previousPost;
+    let previousPostComments;
+    if (post.id == 1) {
+        timeDivider = <Text style={styles.spacer}>Originally posted 02/21/21</Text>;
+        previousPost = <PostCard post={Users.cityowls.posts[1]} header={true} clickable={false} navigation={navigation} />;
+        previousPostComments = renderComments(Users.cityowls.posts[1]);
+    }
 
     return (
         <View style={styles.container}>
             <ScrollView>
-                <PostCard post={dpost1} header={true} navigation={navigation} />
+                <PostCard post={post} header={true} clickable={false} navigation={navigation} />
+                {renderComments(post)}
+                {commentForm}
+                {timeDivider}
+                {previousPost}
+                {previousPostComments}
+                {/*
                 <CommentCard comment={dpost1.comments[0]} navigation={navigation} />
-                <CommentForm navigation={navigation} />
                 <Text style={styles.spacer}>Originally posted 02/21/21</Text>
                 <PostCard post={dpost2} header={true} navigation={navigation} />
                 <CommentCard comment={dpost2.comments[0]} navigation={navigation} />
                 <CommentCard comment={dpost2.comments[1]} navigation={navigation} />
                 <CommentCard comment={dpost2.comments[2]} navigation={navigation} />
                 <CommentCard comment={dpost2.comments[3]} navigation={navigation} />
+                */}
+                <View style={styles.spacer}></View>
             </ScrollView>
         </View>
 

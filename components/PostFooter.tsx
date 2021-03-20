@@ -74,6 +74,7 @@ export default function PostFooter({ post, navigation }: PostFooterProps) {
         <StatusTag status={post.status} />
         {editButton}
       </View>
+      <Text style={styles.meta}>Posted {post.timestamp} | {post.comments.length} comments</Text>
       <Text style={styles.description}>{post.description}</Text>
       <TagArray tags={Filler.post.tags} size="small" navigation={navigation} />
     </View>
@@ -91,17 +92,24 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
   },
   title: {
-    fontSize: 20,
+    fontSize: Layout.textLarge,
     fontWeight: 'bold',
-    padding: 8,
+    padding: Layout.gapSmall,
     color: Colors.artally.basicDark,
   },
   description: {
-    fontSize: 12,
+    fontSize: Layout.textMid,
     fontWeight: 'normal',
-    marginLeft: 8,
-    marginBottom: 16,
+    marginLeft: Layout.gapSmall,
+    marginBottom: Layout.gapLarge,
     color: Colors.artally.basicDark,
   },
+  meta: {
+    fontSize: Layout.textSmall,
+    fontWeight: 'normal',
+    color: Colors.artally.basicMid,
+    marginLeft: Layout.gapSmall,
+    marginBottom: Layout.gapSmall,
+  }
   // edit those styles or define more here!
 });

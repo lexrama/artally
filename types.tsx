@@ -139,6 +139,7 @@ export type PostHeaderProps = {
 export type PostCardProps = {
   post: Post;
   header: boolean; // true if header should appear (ie. on home feed), false otherwise (ie. on profiles)
+  clickable: boolean;
   navigation: any;
 }
 
@@ -305,7 +306,7 @@ export type ProfileScreenProps = {
 }
 
 export type ThreadScreenProps = {
-  post: Post; // was FeedItemData
+  postID: number; // was FeedItemData
   navigation: any;
 }
 
