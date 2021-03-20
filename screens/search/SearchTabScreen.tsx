@@ -19,9 +19,8 @@ export default function BaseScreen({ navigation }:SearchScreenProps ) {
         <SafeAreaView style={styles.container}>
             <SearchBar
             platform="ios"
+            
             ></SearchBar>
-                
-            <Text>tester</Text>
             <Button title="go to results" type="active" onPress={() => navigation.navigate("Results", resultsProps)} navigation={navigation}/>
         </SafeAreaView>
     );
