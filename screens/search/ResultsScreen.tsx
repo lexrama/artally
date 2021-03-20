@@ -15,6 +15,9 @@ function MyTabs() {
             tabBarOptions={{
                 activeTintColor: Colors.artally.action,
                 inactiveTintColor: Colors.artally.basicDark,
+                indicatorStyle: {
+                    backgroundColor: Colors.artally.action  
+                },
                 labelStyle: { 
                     fontSize: 18,
                     fontWeight: 'bold'
