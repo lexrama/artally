@@ -4,19 +4,46 @@ import { SearchScreenProps } from "../../types";
 import Posts from "./ResultsPostsScreen";
 import Users from "./ResultsUsersScreen";
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import Colors from '../../constants/Colors';
 
 const Tab = createMaterialTopTabNavigator();
 
+function MyTabs() {
+    return (
+        <Tab.Navigator
+            initialRouteName="Posts"
+            tabBarOptions={{
+                activeTintColor: Colors.artally.action,
+                inactiveTintColor: Colors.artally.basicDark,
+                indicatorStyle: {
+                    backgroundColor: Colors.artally.action  
+                },
+                labelStyle: { 
+                    fontSize: 18,
+                    fontWeight: 'bold'
+                },
+                style: { backgroundColor: Colors.artally.basicLight },
+            }}
+            >
+            <Tab.Screen
+                name="Posts"
+                component={Posts}
+                options={{ tabBarLabel: 'Posts' }}
+            />
+            <Tab.Screen
+                name="Users"
+                component={Users}
+                options={{ tabBarLabel: 'Users' }}
+            />
+            
+        </Tab.Navigator>
+    );
+  }
+
 export default function ResultsScreen({ navigation }:SearchScreenProps ) {
     const [loading, setLoading] = useState(false);
-
     return (
-        <SafeAreaView style={styles.container}>
-            <Tab.Navigator>
-                <Tab.Screen name="Posts" component={Posts} />
-                <Tab.Screen name="Users" component={Users} />
-            </Tab.Navigator>
-        </SafeAreaView>
+        <MyTabs />
     );
 }
 
