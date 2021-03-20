@@ -11,7 +11,7 @@ export default function ResultsPostsScreen({ navigation }:SearchScreenProps ) {
 
     return (
         <SafeAreaView style={styles.container}>
-            <Tag text='digital' navigation={null}/>
+            <Tag text='digital' size={"large"} navigation={null}/>
             <Feed
                 feedItems={Users.izipizi.posts} // was feedData, eventually want this to be fsPosts
                 header={false}
