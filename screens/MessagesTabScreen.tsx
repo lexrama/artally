@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, ScrollView } from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
@@ -12,7 +12,9 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 export default function MessagesTabScreen({ navigation }: MessagesTabParamList) {
   return (
     <View style={styles.container}>
+      <ScrollView style={styles.scroll}>
         <MessagePreview user={Users.saturno_22} text="Where did you learn how to draw fire?! The glow effect is so lifelike!" timestamp="5h" navigation={navigation} />
+      </ScrollView>
     </View>
   );
 }
@@ -32,4 +34,8 @@ const styles = StyleSheet.create({
     height: 1,
     width: '80%',
   },
+  scroll: {
+    flex: 1,
+    width: "100%",
+  }
 });

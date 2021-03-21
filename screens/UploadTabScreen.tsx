@@ -4,7 +4,8 @@ import {
   TextInput,
   TouchableOpacity,
   Alert,
-  Platform
+  Platform,
+  ScrollView,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import EditScreenInfo from '../components/EditScreenInfo';
@@ -121,53 +122,57 @@ export default function UploadTabScreen({ navigation }: UploadTabParamList) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.uploadBox}>
-        {hasImage ? <Image source={{uri: image}} height={150} style={{ marginTop: Layout.gapLarge*1.5 }}/> : uploadInfo }
-        <View style={styles.buttons}>
-          <View style={styles.button}>
-          <Ionicons name="document" size={30} color={Colors.artally.basicMidLight} />
+      <ScrollView style={styles.scroll}>
+        <View style={styles.uploadBox}>
+          {hasImage ? <Image source={{ uri: image }} height={150} style={{ marginTop: Layout.gapLarge * 1.5 }} /> : uploadInfo}
+          <View style={styles.buttons}>
+            <View style={styles.button}>
+              <Ionicons name="document" size={30} color={Colors.artally.basicMidLight} />
+            </View>
+            <View style={styles.button}>
+              <Ionicons name="link" size={30} color={Colors.artally.basicMidLight} />
+            </View>
+            <View style={styles.button}>
+              <Ionicons name="camera" size={30} color={Colors.artally.basicMidLight} />
+            </View>
+            <TouchableOpacity onPress={pickImage} style={styles.button}>
+              <Ionicons name="image" size={30} color={Colors.artally.action} />
+            </TouchableOpacity>
           </View>
-          <View style={styles.button}>
-          <Ionicons name="link" size={30} color={Colors.artally.basicMidLight} />
-          </View>
-          <View style={styles.button}>
-          <Ionicons name="camera" size={30} color={Colors.artally.basicMidLight} />
-          </View>
-          <TouchableOpacity onPress={pickImage} style={styles.button}>
-            <Ionicons name="image" size={30} color={Colors.artally.action} />
-          </TouchableOpacity>
         </View>
-      </View>
-      <View style={styles.inputBoxes}>
-        <Text style={styles.title}>Title</Text>
-        <TextInput
-          style={styles.textInput}
-          onChangeText={(inputText) => onChangeTitle(inputText)}
-          value={title} // was "text"
-          placeholder="What is your question about? (Required)"
-          placeholderTextColor={Colors.artally.basicMidLight}
-        />
-        <Text style={styles.title}>Tags</Text>
-        <TextInput
-          style={styles.textInput}
-          onChangeText={(inputText) => onChangeTagStr(inputText)}
-          onSubmitEditing={() => tags = tagStr.split("\\s*,\\s*")}
-          value={tagStr} // was "text"
-          placeholder="ex. traditional, illustration, perspective"
-          placeholderTextColor={Colors.artally.basicMidLight}
-        />
-        <Text style={styles.title}>Description</Text>
-        <TextInput
-          style={styles.textInputTall}
-          multiline={true}
-          onChangeText={(inputText) => onChangeDescription(inputText)}
-          value={description} // was "text"
-          placeholder="Any additional details?"
-          placeholderTextColor={Colors.artally.basicMidLight}
-        // NEED TO MAKE KEYBOARD DISMISS!!!!
-        />
-      </View>
-      { (title.length == 0 || hasImage == false) ? inactivePostButton : activePostButton}
+        <View style={styles.inputBoxes}>
+          <Text style={styles.title}>Title</Text>
+          <TextInput
+            style={styles.textInput}
+            onChangeText={(inputText) => onChangeTitle(inputText)}
+            value={title} // was "text"
+            placeholder="What is your question about? (Required)"
+            placeholderTextColor={Colors.artally.basicMidLight}
+          />
+          <Text style={styles.title}>Tags</Text>
+          <TextInput
+            style={styles.textInput}
+            onChangeText={(inputText) => onChangeTagStr(inputText)}
+            onSubmitEditing={() => tags = tagStr.split("\\s*,\\s*")}
+            value={tagStr} // was "text"
+            placeholder="ex. traditional, illustration, perspective"
+            placeholderTextColor={Colors.artally.basicMidLight}
+          />
+          <Text style={styles.title}>Description</Text>
+          <TextInput
+            style={styles.textInputTall}
+            multiline={true}
+            onChangeText={(inputText) => onChangeDescription(inputText)}
+            value={description} // was "text"
+            placeholder="Any additional details?"
+            placeholderTextColor={Colors.artally.basicMidLight}
+          // NEED TO MAKE KEYBOARD DISMISS!!!!
+          />
+        </View>
+        <View style={styles.postButton}>
+          {(title.length == 0 || hasImage == false) ? inactivePostButton : activePostButton}
+        </View>
+      </ScrollView>
     </View>
   );
 }
@@ -239,5 +244,14 @@ const styles = StyleSheet.create({
   text: {
     fontSize: Layout.textMid,
     color: Colors.artally.basicDark,
+  },
+  scroll: {
+    flex: 1,
+    width: "100%",
+  },
+  postButton: {
+    flex: 1,
+    alignSelf: "flex-end",
+    marginHorizontal: Layout.gapSmall,
   }
 });

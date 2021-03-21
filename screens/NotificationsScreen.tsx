@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, ScrollView } from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import Notification from '../components/Notification';
@@ -11,8 +11,10 @@ import { NotificationScreenProps } from '../types'
 export default function NotificationScreen({ navigation }: NotificationScreenProps) {
   return (
     <View style={styles.container}>
-      <Notification post={Users.nifty_salamander.posts[1]} user={Users.saturno_22} text="It looks good to me! I think the shadow..." timestamp="5h" navigation={navigation}/>
-      <Notification post={Users.nifty_salamander.posts[1]} user={Users.cityowls} text="I really like these colors! the reddish purp..." timestamp="6h" navigation={navigation}/>
+      <ScrollView style={styles.scroll}>
+        <Notification post={Users.nifty_salamander.posts[1]} user={Users.saturno_22} text="It looks good to me! I think the shadow..." timestamp="5h" navigation={navigation} />
+        <Notification post={Users.nifty_salamander.posts[1]} user={Users.cityowls} text="I really like these colors! the reddish purp..." timestamp="6h" navigation={navigation} />
+      </ScrollView>
     </View>
   );
 }
@@ -32,4 +34,8 @@ const styles = StyleSheet.create({
     height: 1,
     width: '80%',
   },
+  scroll: {
+    flex: 1,
+    width: "100%",
+  }
 });
