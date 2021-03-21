@@ -21,28 +21,52 @@ import Button from "../components/Button";
 // see types.tsx or the doc for the data types of the props; let me know if you need to change them
 export default function ProfileHeader({ user, mine, navigation }: ProfileHeaderProps) {
 
-  let topLeft = (<Button title="Follow" type="active" navigation={navigation} onPress={null}/>);
-  if (mine) {
-    topLeft = (<Ionicons name="settings-outline" size={25} color={Colors.artally.basicDark} />);
+  let topRight = [<Ionicons name="settings-outline" size={25} color={Colors.artally.basicDark} />];
+  let chatbubbles;
+
+  if (!mine) {
+    topRight = ([
+      <View style={styles.row}>
+          <Button title="Follow" type="active" navigation={navigation} onPress={null} />
+      </View>
+    ]);
+    chatbubbles = (
+      <View>
+        <TouchableOpacity onPress={() => navigation.navigate("Conversation")}>
+          {/*<Button title="Message" type="outline" navigation={navigation} onPress={null} />*/}
+          <View style={styles.button}>
+          <Ionicons name="chatbubbles-outline" size={20} color={Colors.artally.action} />
+          </View>
+        </TouchableOpacity>
+      </View>
+    );
   }
 
   return (
     <View style={styles.container}>
+
       <View style={styles.aboveTags}>
         <UserIcon user={user} size="large" navigation={navigation} />
+        
         <View style={styles.nextToIcon}>
-        <View style={styles.topRight}>{topLeft}</View>
-        <View style={styles.textElements}>
-          <Text style={styles.username}>{user.username}</Text>
-          <View style={styles.stats}>
-            <Text style={styles.text}>{user.posts.length} posts</Text>
-            <Text style={styles.text}>{user.followers.length} followers</Text>
-            <Text style={styles.text}>{user.numPoints} points</Text>
+          <View style={styles.topRight}>{topRight}</View>
+          <View style={styles.textElements}>
+            <View style={styles.row}>
+              <Text style={styles.username}>{user.username}</Text>
+              {chatbubbles}
+            </View>
+            <View style={styles.stats}>
+              <Text style={styles.text}>{user.posts.length} posts</Text>
+              <Text style={styles.text}>{user.followers.length} followers</Text>
+              <Text style={styles.text}>{user.numPoints} points</Text>
+            </View>
           </View>
         </View>
-        </View>
+
       </View>
+
       <TagArray tags={user.tags} size="small" navigation={navigation} />
+
     </View>
   );
 }
@@ -58,8 +82,9 @@ const styles = StyleSheet.create({
   aboveTags: {
     flexDirection: "row",
     margin: Layout.gapSmall,
-    alignContent: "center",
-    justifyContent: "center",
+    alignContent: "flex-end",
+    justifyContent: "flex-end",
+    alignItems: "flex-end",
     //backgroundColor: "gray",
   },
   nextToIcon: {
@@ -83,5 +108,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: Colors.artally.basicDark,
   },
+  row: {
+    flexDirection: "row",
+    justifyContent: 'flex-start',
+    alignContent: "flex-end",
+    alignItems: "flex-end"
+  },
+  button: {
+    paddingHorizontal: Layout.gapSmall,
+  }
   // edit those styles or define more here!
 });
