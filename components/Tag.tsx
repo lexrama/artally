@@ -48,5 +48,7 @@ const styles = StyleSheet.create({
     fontSize: Layout.textLarge,
     fontWeight: 'bold',
     color: Colors.artally.white,
+    paddingVertical: 2,
+    paddingHorizontal: 5,
   }
 });

@@ -76,7 +76,7 @@ export default function PostFooter({ post, navigation }: PostFooterProps) {
       </View>
       <Text style={styles.meta}>Posted {post.timestamp} | {post.comments.length} comments</Text>
       <Text style={styles.description}>{post.description}</Text>
-      <TagArray tags={Filler.post.tags} size="small" navigation={navigation} />
+      <TagArray tags={post.tags} size="small" navigation={navigation} />
     </View>
   );
 }

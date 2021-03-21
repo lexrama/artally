@@ -19,6 +19,7 @@ import firebase from "firebase";
 import firestore from "../firebase";
 //import { Colors } from "react-native/Libraries/NewAppScreen";
 import Colors from "../constants/Colors";
+import Layout from "../constants/Layout";
 
 
 const getPosts = async () => {
@@ -48,6 +49,7 @@ export default function Feed({ feedItems, header, loading, navigation }: FeedPro
           renderItem={({ item }) => renderItem(item)}
           //keyExtractor={(item, index) => item.id.toString}
         />
+        <View style={styles.spacer}></View>
       </View>
     );
   }
@@ -64,9 +66,19 @@ const styles = StyleSheet.create({
   },
 
   list: {
-    backgroundColor: Colors.artally.basicLight,
+    backgroundColor: Colors.artally.white,
     borderColor: "#27277a",
     //borderTopWidth: 1,
   },
+  spacer: {
+    color: Colors.artally.basicDark,
+    fontSize: Layout.textMid,
+    textAlign: "center",
+    backgroundColor: Colors.artally.basicLight,
+    padding: Layout.gapLarge * 3,
+    borderWidth: 1,
+    borderColor: Colors.artally.basicMidLight,
+    width: Layout.window.width,
+}
 
 });

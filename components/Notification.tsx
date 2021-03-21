@@ -19,8 +19,9 @@ import Images from '../constants/Images';
 
 // see types.tsx or the doc for the data types of the props; let me know if you need to change them
 export default function Notification({ post, user, text, timestamp, navigation }: NotificationProps) {
+  const id = post.id;
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={()=>navigation.navigate("Thread", {id, navigation})}>
       <UserIcon user={user} size="small" navigation={navigation} />
       <View style={styles.body}>
         <Text style={styles.username}>{user.username}</Text>

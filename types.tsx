@@ -143,6 +143,17 @@ export type PostCardProps = {
   navigation: any;
 }
 
+export type PostPreviewProps = {
+  post: Post;
+  navigation: any;
+}
+
+export type TagPreviewProps = {
+  tag: string;
+  posts: Post[];
+  navigation: any;
+}
+
 export type FullWidthImageProps = {
   source: string;
   size: string;

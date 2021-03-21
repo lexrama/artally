@@ -69,10 +69,10 @@ export default function HomeTabScreen({ navigation }: HomeTabParamList) {
     }
 
     useEffect(() => {
-        getUsers();
+        //
     });
 
-
+    getUsers();
     let allPosts: Post[] = [];
     fsUsers.forEach(fsUser => {
         fsUser.posts.forEach(post => {

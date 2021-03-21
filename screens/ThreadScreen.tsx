@@ -23,7 +23,7 @@ export default function ThreadScreen({ postID, navigation }: ThreadScreenProps) 
     const [myCommentText, setMyCommentText] = useState("");
 
     let post = Users.cityowls.posts[0];
-    console.log(postID);
+    //console.log(postID);
     if (postID == 1) {
         post = Users.cityowls.posts[0];
     } else if (postID == 2) {
@@ -43,7 +43,6 @@ export default function ThreadScreen({ postID, navigation }: ThreadScreenProps) 
     } else if (postID == 9) {
         post = Users.saturno_22.posts[1];
     } 
-
 
     /*let commentsListArr = post.comments.map(comment => (
         <CommentCard key={comment.id}/>

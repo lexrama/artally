@@ -308,7 +308,7 @@ export const Users = {
                 id: 6,
                 user: "izipizi",
                 image: "porygon",
-                title: "diglett render composition",
+                title: "3d porygon render",
                 description: "any thoughts on the colors here... going for a little bit of eyestrain but not TOO much yanno",
                 tags: ["3d", "render", "cgi", "pokemon", "porygon"],
                 timestamp: "Jan 29",
