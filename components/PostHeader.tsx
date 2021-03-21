@@ -75,33 +75,56 @@ export default function PostHeader({ post, navigation }: PostHeaderProps) {
       ]
     );
 
-  const createAlert = () =>
-    Alert.alert(
-      "Feed Options",
-      "",
-      [
-        {
-          text: "Show me more like this",
-          onPress: () => curate(),
-        },
-        {
-          text: "Show me less like this",
-          onPress: () => curate(),
-        },
-        {
-          text: "Report post",
-          onPress: () => report(),
-        },
-        {
-          text: "Block user",
-          onPress: () => block(),
-        },
-        {
-          text: "Cancel",
-          style: "cancel"
-        }
-      ]
-    );
+  const createAlert = () => {
+    if (user.username == "nifty_salamander") {
+      Alert.alert(
+        "Feed Options",
+        "",
+        [
+          {
+            text: "Show me more like this",
+            onPress: () => curate(),
+          },
+          {
+            text: "Show me less like this",
+            onPress: () => curate(),
+          },
+          {
+            text: "Cancel",
+            style: "cancel"
+          }
+        ]
+      );
+    } else {
+      Alert.alert(
+        "Feed Options",
+        "",
+        [
+          {
+            text: "Show me more like this",
+            onPress: () => curate(),
+          },
+          {
+            text: "Show me less like this",
+            onPress: () => curate(),
+          },
+          {
+            text: "Report post",
+            onPress: () => report(),
+          },
+          {
+            text: "Block user",
+            onPress: () => block(),
+          },
+          {
+            text: "Cancel",
+            style: "cancel"
+          }
+        ]
+      );
+    }
+
+  }
 
   return (
     <View style={styles.container}>

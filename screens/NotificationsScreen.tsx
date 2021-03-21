@@ -11,8 +11,8 @@ import { NotificationScreenProps } from '../types'
 export default function NotificationScreen({ navigation }: NotificationScreenProps) {
   return (
     <View style={styles.container}>
-      <Notification post={Users.nifty_salamander.posts[1]} user={Users.saturno_22} text="It looks good to me! I think the sha..." timestamp="5h" navigation={navigation}/>
-      <Notification post={Users.nifty_salamander.posts[1]} user={Users.cityowls} text="I really like these colors! the reddi..." timestamp="6h" navigation={navigation}/>
+      <Notification post={Users.nifty_salamander.posts[1]} user={Users.saturno_22} text="It looks good to me! I think the shadow..." timestamp="5h" navigation={navigation}/>
+      <Notification post={Users.nifty_salamander.posts[1]} user={Users.cityowls} text="I really like these colors! the reddish purp..." timestamp="6h" navigation={navigation}/>
     </View>
   );
 }

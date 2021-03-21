@@ -7,6 +7,7 @@ import {
     Image,
     Alert,
     TextInput,
+    Platform,
     TouchableOpacity, // replace a View with this to make the entire view clickable
     // import any other needed React components here
 } from "react-native";
@@ -18,7 +19,22 @@ import { CommentFormProps, Comment } from '../types'; // import any other needed
 import UserIcon from './UserIcon';
 import { Users } from '../data/Users2';
 import CommentCard from '../components/Comment';
+import * as ImagePicker from 'expo-image-picker';
+import ScalableImage from 'react-native-scalable-image';
+import Images from '../constants/Images';
 // to use a component from this project, add: import MyComponent from '../components/MyComponent';
+
+const sorry = () =>
+    Alert.alert(
+        "Can't upload image",
+        "Sorry, we need camera roll permissions to make this work!",
+        [
+            {
+                text: "OK",
+                style: "cancel"
+            }
+        ]
+    );
 
 
 const confirm = () =>
@@ -36,7 +52,7 @@ const confirm = () =>
 const blank = () =>
     Alert.alert(
         "Oops!",
-        "You can't leave a blank comment!",
+        "You can't leave a blank comment! Enter some text or upload an image.",
         [
             {
                 text: "OK",
@@ -58,7 +74,7 @@ const info = () =>
     );
 
 
-const makeComment = (text: string) => {
+const makeComment = (text: string, hasImage: boolean, imageURI: string) => {
     let comment: Comment = {
         id: 420,
         post: 420,
@@ -70,8 +86,8 @@ const makeComment = (text: string) => {
         downvotes: 0,
         upvoted: false,
         downvoted: false,
-        hasImage: false,
-        image: "",
+        hasImage: hasImage,
+        image: imageURI,
         topLevel: true,
         replies: [],
     }
@@ -83,21 +99,66 @@ export default function CommentForm({ reply, navigation }: CommentFormProps) {
     const user = Users.nifty_salamander;
     const [text, onChangeText] = React.useState("");
     const [haveCommented, setHaveCommented] = React.useState(false);
-    let blankComment = makeComment("Test");
+    let blankComment = makeComment("Test", false, "");
     const [myComment, setMyComment] = React.useState(blankComment);
+    const [image, setImage] = React.useState(Images.artally.uri);
+    const [hasImage, setHasImage] = React.useState(false);
+
+    React.useEffect(() => {
+        (async () => {
+            if (Platform.OS !== 'web') {
+                const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+                if (status !== 'granted') {
+                    sorry();
+                }
+            }
+        })();
+    }, []);
+
+    const pickImage = async () => {
+        let result: ImagePicker.ImagePickerResult = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            allowsEditing: true,
+            aspect: [4, 3],
+            quality: 1,
+        });
+
+        //console.log(result);
+
+        if (!result.cancelled) {
+            setImage(result.uri);
+            setHasImage(true);
+        }
+    };
 
     const submitComment = () => {
         if (haveCommented) {
             info();
-        } else if (text.length == 0) {
+        } else if (text.length == 0 && hasImage == false) {
             blank();
         } else {
-            let newComment = makeComment(text);
+            let newComment = makeComment(text, hasImage, image);
             setMyComment(newComment);
             setHaveCommented(true);
             onChangeText("");
+            setHasImage(false);
+            setImage("");
         }
     }
+
+    const removeImage = () => {
+        setImage("");
+        setHasImage(false);
+    }
+
+    let imagePreview = (
+        <View style={styles.imagePreview}>
+            <TouchableOpacity onPress={removeImage}>
+                <Ionicons name="close-circle-outline" size={20} color={Colors.artally.action} />
+            </TouchableOpacity>
+            <ScalableImage source={{ uri: image }} height={150} />
+        </View>
+    );
 
     let myCommentComponent = <CommentCard comment={myComment} navigation={navigation} />
 
@@ -123,10 +184,13 @@ export default function CommentForm({ reply, navigation }: CommentFormProps) {
                                 <Ionicons name="send-outline" size={25} color={Colors.artally.action} />
                             </TouchableOpacity>
                         </View>
+                        {hasImage ? imagePreview : null}
                         <View style={styles.buttons}>
-                            <Ionicons name="camera-outline" size={25} color={Colors.artally.action} />
-                            <Ionicons name="image-outline" size={25} color={Colors.artally.action} />
-                            <Ionicons name="happy-outline" size={25} color={Colors.artally.action} />
+                            <Ionicons name="camera-outline" size={25} color={Colors.artally.basicMidLight} />
+                            <TouchableOpacity onPress={pickImage}>
+                                <Ionicons name="image-outline" size={25} color={Colors.artally.action} />
+                            </TouchableOpacity>
+                            <Ionicons name="happy-outline" size={25} color={Colors.artally.basicMidLight} />
                         </View>
 
                     </View>
@@ -195,4 +259,11 @@ const styles = StyleSheet.create({
     none: {
 
     },
+    imagePreview: {
+        flexDirection: "row",
+        justifyContent: "flex-start",
+        alignContent: "flex-start",
+        marginVertical: Layout.gapSmall,
+        marginLeft: Layout.gapSmall,
+    }
 });

@@ -19,30 +19,6 @@ import StatusTag from '../components/StatusTag';
 // to use a component from this project, add: import MyComponent from '../components/MyComponent';
 
 
-const editMenu = () =>
-  Alert.alert(
-    "Post Options",
-    "",
-    [
-      {
-        text: "Edit post",
-        onPress: () => info(),
-      },
-      {
-        text: "Create update",
-        onPress: () => info(),
-      },
-      {
-        text: "Mark as closed",
-        onPress: () => info(),
-      },
-      {
-        text: "Cancel",
-        style: "cancel"
-      }
-    ]
-  );
-
 const info = () =>
   Alert.alert(
     "",
@@ -55,9 +31,50 @@ const info = () =>
     ]
   );
 
+  const close = () =>
+  Alert.alert(
+    "Success!",
+    "In a real implementation, this would change the status tag on this post.",
+    [ 
+      {
+        text: "Undo",
+        style: "cancel"
+      },
+      {
+        text: "OK",
+      },
+    ]
+  );
+
 
 // see types.tsx or the doc for the data types of the props; let me know if you need to change them
 export default function PostFooter({ post, navigation }: PostFooterProps) {
+
+  const editMenu = () =>
+  Alert.alert(
+    "Post Options",
+    "",
+    [
+      {
+        text: "Edit post",
+        onPress: () => info(),
+      },
+      {
+        text: "Create update",
+        onPress: () => navigation.navigate("Upload"),
+      },
+      {
+        text: "Mark as closed",
+        onPress: () => close(),
+      },
+      {
+        text: "Cancel",
+        style: "cancel"
+      }
+    ]
+  );
+
+
   let editButton;
   if (post.user == "nifty_salamander") {
     editButton = (

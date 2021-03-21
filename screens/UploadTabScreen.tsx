@@ -15,7 +15,6 @@ import Layout from '../constants/Layout';
 import Images from '../constants/Images';
 import Filler from "../data/Filler";
 import { UploadTabParamList } from '../types';
-import Constants from 'expo-constants';
 import * as ImagePicker from 'expo-image-picker';
 import Image from 'react-native-scalable-image';
 
@@ -36,7 +35,7 @@ export default function UploadTabScreen({ navigation }: UploadTabParamList) {
   const [title, onChangeTitle] = React.useState("");
   const [tagStr, onChangeTagStr] = React.useState("");
   const [description, onChangeDescription] = React.useState("");
-  const [image, setImage] = useState(Images.izipizi.uri);
+  const [image, setImage] = useState(Images.artally.uri);
   const [hasImage, setHasImage] = useState(false);
   let tags = [];
 
@@ -63,7 +62,6 @@ export default function UploadTabScreen({ navigation }: UploadTabParamList) {
     //console.log(result);
 
     if (!result.cancelled) {
-      //let chosenImage = require(result.uri);
       setImage(result.uri);
       setHasImage(true);
     }

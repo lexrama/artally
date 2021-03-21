@@ -5,6 +5,7 @@ import {
     SafeAreaView,
     Button,
     Image,
+    Platform,
     TouchableOpacity,
     Alert, // replace a View with this to make the entire view clickable
     // import any other needed React components here
@@ -17,10 +18,24 @@ import Filler from "../data/Filler";
 import { CommentProps, User, Post, Comment } from '../types'; // import any other needed types from types.tsx here
 import UserIcon from './UserIcon';
 import { Users } from '../data/Users2';
-import FullWidthImage from './FullWidthImage';
+import FullWidthImage from '../components/FullWidthImage';
 import { ReloadInstructions } from 'react-native/Libraries/NewAppScreen';
 import { TextInput } from 'react-native-gesture-handler';
+import ScalableImage from 'react-native-scalable-image';
+import * as ImagePicker from 'expo-image-picker';
 // to use a component from this project, add: import MyComponent from '../components/MyComponent';
+
+const sorry = () =>
+    Alert.alert(
+        "Can't upload image",
+        "Sorry, we need camera roll permissions to make this work!",
+        [
+            {
+                text: "OK",
+                style: "cancel"
+            }
+        ]
+    );
 
 const info = () =>
     Alert.alert(
@@ -37,7 +52,7 @@ const info = () =>
 const blank = () =>
     Alert.alert(
         "Oops!",
-        "You can't leave a blank comment!",
+        "You can't leave a blank comment! Enter some text or upload an image.",
         [
             {
                 text: "OK",
@@ -80,10 +95,35 @@ export default function CommentCard({ comment, navigation }: CommentProps) {
     const [haveReplied, setHaveReplied] = useState(false);
     const [showReplyForm, setShowReplyForm] = useState(false);
 
-    /*
+    const [replyImage, setReplyImage] = useState(Images.artally.uri);
+    const [replyHasImage, setReplyHasImage] = useState(false);
+
     useEffect(() => {
-    });
-    */
+        (async () => {
+            if (Platform.OS !== 'web') {
+                const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+                if (status !== 'granted') {
+                    sorry();
+                }
+            }
+        })();
+    }, []);
+
+    const pickImage = async () => {
+        let result: ImagePicker.ImagePickerResult = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            allowsEditing: true,
+            aspect: [4, 3],
+            quality: 1,
+        });
+
+        //console.log(result);
+
+        if (!result.cancelled) {
+            setReplyImage(result.uri);
+            setReplyHasImage(true);
+        }
+    };
 
 
     let op: any;
@@ -95,11 +135,17 @@ export default function CommentCard({ comment, navigation }: CommentProps) {
         );
     }
 
-    let img: any;
-    if (comment.hasImage) {
+    let defaultImg = Images.girl_redlined;
+
+    let img = (
+        <View style={styles.right}>
+            <ScalableImage source={defaultImg} height={150} />
+        </View>
+    );
+    if (comment.user != "izipizi") {
         img = (
             <View style={styles.right}>
-                <FullWidthImage source={comment.image} size="reply" />
+                <ScalableImage source={{ uri: comment.image }} height={150} />
             </View>
         );
     }
@@ -203,6 +249,23 @@ export default function CommentCard({ comment, navigation }: CommentProps) {
                     </TouchableOpacity>
                 </View>
             </View>
+            <View style={styles.right}>
+                {replyHasImage ? <ScalableImage source={{ uri: replyImage }} height={150} /> : null}
+            </View>
+        </View>
+    );
+
+    const removeImage = () => {
+        setReplyImage("");
+        setReplyHasImage(false);
+    }
+
+    let imagePreview = (
+        <View style={styles2.imagePreview}>
+            <TouchableOpacity onPress={removeImage}>
+                <Ionicons name="close-circle-outline" size={20} color={Colors.artally.action} />
+            </TouchableOpacity>
+            <ScalableImage source={{ uri: replyImage }} height={150} />
         </View>
     );
 
@@ -226,10 +289,13 @@ export default function CommentCard({ comment, navigation }: CommentProps) {
                             <Ionicons name="send-outline" size={25} color={Colors.artally.action} />
                         </TouchableOpacity>
                     </View>
+                    {replyHasImage ? imagePreview : null}
                     <View style={styles2.buttons}>
-                        <Ionicons name="camera-outline" size={25} color={Colors.artally.action} />
-                        <Ionicons name="image-outline" size={25} color={Colors.artally.action} />
-                        <Ionicons name="happy-outline" size={25} color={Colors.artally.action} />
+                        <Ionicons name="camera-outline" size={25} color={Colors.artally.basicMidLight} />
+                        <TouchableOpacity onPress={pickImage}>
+                            <Ionicons name="image-outline" size={25} color={Colors.artally.action} />
+                        </TouchableOpacity>
+                        <Ionicons name="happy-outline" size={25} color={Colors.artally.basicMidLight} />
                     </View>
 
                 </View>
@@ -238,7 +304,7 @@ export default function CommentCard({ comment, navigation }: CommentProps) {
     );
 
     const submitReply = () => {
-        if (myReplyText.length == 0) {
+        if (myReplyText.length == 0 && replyHasImage == false) {
             blank();
         } else {
             setHaveReplied(true)
@@ -281,7 +347,8 @@ export default function CommentCard({ comment, navigation }: CommentProps) {
                     </TouchableOpacity>
                 </View>
             </View>
-            {img}
+
+            {comment.hasImage ? img : null}
             {haveReplied ? myReply : null}
             {showReplyForm ? replyForm : null}
         </View>
@@ -435,4 +502,11 @@ const styles2 = StyleSheet.create({
     none: {
 
     },
+    imagePreview: {
+        flexDirection: "row",
+        justifyContent: "flex-start",
+        alignContent: "flex-start",
+        marginVertical: Layout.gapSmall,
+        marginLeft: Layout.gapSmall,
+    }
 });
