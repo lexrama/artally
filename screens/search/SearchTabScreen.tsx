@@ -32,6 +32,7 @@ export default function BaseScreen({ navigation }: SearchScreenProps) {
                     onSubmitEditing={() => confirm()}
                     value={text} // was "text"
                     placeholder="Enter tags, keywords, etc..."
+                    placeholderTextColor={Colors.artally.basicMidLight}
                 />
                 <TouchableOpacity onPress={() => navigation.navigate("Results", resultsProps)}>
                     <Ionicons name="search" size={25} color={Colors.artally.action} />

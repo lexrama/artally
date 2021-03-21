@@ -1,9 +1,10 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
   Alert,
+  Platform
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import EditScreenInfo from '../components/EditScreenInfo';
@@ -14,13 +15,60 @@ import Layout from '../constants/Layout';
 import Images from '../constants/Images';
 import Filler from "../data/Filler";
 import { UploadTabParamList } from '../types';
+import Constants from 'expo-constants';
+import * as ImagePicker from 'expo-image-picker';
+import Image from 'react-native-scalable-image';
 
+
+const sorry = () =>
+  Alert.alert(
+    "Can't upload image",
+    "Sorry, we need camera roll permissions to make this work!",
+    [
+      {
+        text: "OK",
+        style: "cancel"
+      }
+    ]
+  );
 
 export default function UploadTabScreen({ navigation }: UploadTabParamList) {
   const [title, onChangeTitle] = React.useState("");
   const [tagStr, onChangeTagStr] = React.useState("");
   const [description, onChangeDescription] = React.useState("");
+  const [image, setImage] = useState(Images.izipizi.uri);
+  const [hasImage, setHasImage] = useState(false);
   let tags = [];
+
+
+  useEffect(() => {
+    (async () => {
+      if (Platform.OS !== 'web') {
+        const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+        if (status !== 'granted') {
+          sorry();
+        }
+      }
+    })();
+  }, []);
+
+  const pickImage = async () => {
+    let result: ImagePicker.ImagePickerResult = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    //console.log(result);
+
+    if (!result.cancelled) {
+      //let chosenImage = require(result.uri);
+      setImage(result.uri);
+      setHasImage(true);
+    }
+  };
+
 
 
   const confirm = () =>
@@ -43,18 +91,53 @@ export default function UploadTabScreen({ navigation }: UploadTabParamList) {
       ]
     );
 
+  const alert = () =>
+    Alert.alert(
+      "Incomplete post",
+      "Your post needs a title and an image.",
+      [
+        {
+          text: "OK",
+          style: "cancel"
+        }
+      ]
+    );
+
+
+
+  const submitPost = () => {
+    onChangeTitle("");
+    onChangeDescription("");
+    onChangeTagStr("");
+    setHasImage(false);
+    confirm();
+  }
+
+  const activePostButton = <Button onPress={() => submitPost()} title="Post" type={"active"} navigation={navigation} />;
+  const inactivePostButton = <Button onPress={() => alert()} title="Post" type={"inactive"} navigation={navigation} />;
+  const uploadInfo = [
+    <Text style={styles.title}>Upload your work...</Text>,
+    <Text style={styles.text}>File types supported:</Text>,
+    <Text style={styles.text}>Apple photos (HEIC), JPG, PNG, GIF</Text>
+  ];
 
   return (
     <View style={styles.container}>
       <View style={styles.uploadBox}>
-        <Text style={styles.title}>Upload your work...</Text>
-        <Text style={styles.text}>File types supported:</Text>
-        <Text style={styles.text}>Apple photos (HEIC), JPG, PNG, GIF</Text>
+        {hasImage ? <Image source={{uri: image}} height={150} style={{ marginTop: Layout.gapLarge*1.5 }}/> : uploadInfo }
         <View style={styles.buttons}>
-          <Ionicons name="camera-outline" size={30} color={Colors.artally.action} />
-          <Ionicons name="image-outline" size={30} color={Colors.artally.action} />
-          <Ionicons name="link-outline" size={30} color={Colors.artally.action} />
-          <Ionicons name="document-outline" size={30} color={Colors.artally.action} />
+          <View style={styles.button}>
+          <Ionicons name="document" size={30} color={Colors.artally.basicMidLight} />
+          </View>
+          <View style={styles.button}>
+          <Ionicons name="link" size={30} color={Colors.artally.basicMidLight} />
+          </View>
+          <View style={styles.button}>
+          <Ionicons name="camera" size={30} color={Colors.artally.basicMidLight} />
+          </View>
+          <TouchableOpacity onPress={pickImage} style={styles.button}>
+            <Ionicons name="image" size={30} color={Colors.artally.action} />
+          </TouchableOpacity>
         </View>
       </View>
       <View style={styles.inputBoxes}>
@@ -63,7 +146,8 @@ export default function UploadTabScreen({ navigation }: UploadTabParamList) {
           style={styles.textInput}
           onChangeText={(inputText) => onChangeTitle(inputText)}
           value={title} // was "text"
-          placeholder="What is your question about?"
+          placeholder="What is your question about? (Required)"
+          placeholderTextColor={Colors.artally.basicMidLight}
         />
         <Text style={styles.title}>Tags</Text>
         <TextInput
@@ -72,6 +156,7 @@ export default function UploadTabScreen({ navigation }: UploadTabParamList) {
           onSubmitEditing={() => tags = tagStr.split("\\s*,\\s*")}
           value={tagStr} // was "text"
           placeholder="ex. traditional, illustration, perspective"
+          placeholderTextColor={Colors.artally.basicMidLight}
         />
         <Text style={styles.title}>Description</Text>
         <TextInput
@@ -80,10 +165,11 @@ export default function UploadTabScreen({ navigation }: UploadTabParamList) {
           onChangeText={(inputText) => onChangeDescription(inputText)}
           value={description} // was "text"
           placeholder="Any additional details?"
+          placeholderTextColor={Colors.artally.basicMidLight}
         // NEED TO MAKE KEYBOARD DISMISS!!!!
         />
       </View>
-      <Button onPress={() => confirm()} title="Post" type={"active"} navigation={navigation} />
+      { (title.length == 0 || hasImage == false) ? inactivePostButton : activePostButton}
     </View>
   );
 }
@@ -113,7 +199,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     width: "95%",
     //marginHorizontal: Layout.gapLarge * 2,
-    marginBottom: Layout.gapLarge * 2,
+    marginBottom: Layout.gapLarge * 1.25,
   },
   textInput: {
     width: "100%",
@@ -125,7 +211,7 @@ const styles = StyleSheet.create({
     padding: Layout.gapSmall,
   },
   textInputTall: {
-    height: 120,
+    height: 60,
     width: "100%",
     borderColor: Colors.artally.basicMidLight,
     borderRadius: Layout.radiusLarge,
@@ -140,6 +226,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: Colors.artally.basicLight,
     margin: Layout.gapLarge,
+  },
+  button: {
+    marginHorizontal: Layout.gapSmall / 2,
+    backgroundColor: Colors.artally.basicLight,
   },
   title: {
     fontSize: Layout.textLarge,

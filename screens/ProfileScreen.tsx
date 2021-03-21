@@ -41,7 +41,7 @@ export default function ProfileScreen({ user, navigation }: ProfileScreenProps) 
 
   return (
     <View>
-      <ProfileHeader user={fsUser} navigation={navigation} mine={false} />
+      <ProfileHeader user={fsUser} navigation={navigation} mine={false} showBio={true}/>
       <Feed
         feedItems={fsUser.posts} // was feedData, eventually want this to be fsPosts
         header={false}

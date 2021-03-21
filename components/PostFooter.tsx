@@ -45,7 +45,7 @@ const editMenu = () =>
 
 const info = () =>
   Alert.alert(
-    "Success!",
+    "",
     "In a real implementation, this would lead to another screen.",
     [
       {

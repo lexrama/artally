@@ -58,7 +58,7 @@ export default function ThreadScreen({ postID, navigation }: ThreadScreenProps) 
     }
 
     let commentForm;
-    if (post.status != 3) commentForm = <CommentForm navigation={navigation} />;
+    if (post.status != 3) commentForm = <CommentForm reply={false} navigation={navigation} />;
 
     let timeDivider;
     let previousPost;

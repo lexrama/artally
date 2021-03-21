@@ -48,7 +48,7 @@ export default function MyProfileTabScreen({ navigation }: ProfileScreenProps) {
   
   return (
     <View>
-      <ProfileHeader user={fsUser} navigation={navigation} mine={true} />
+      <ProfileHeader user={fsUser} navigation={navigation} mine={true} showBio={true}/>
       <Feed
         feedItems={fsUser.posts} // was feedData, eventually want this to be fsPosts
         header={false}

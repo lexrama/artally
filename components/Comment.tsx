@@ -5,7 +5,8 @@ import {
     SafeAreaView,
     Button,
     Image,
-    TouchableOpacity, // replace a View with this to make the entire view clickable
+    TouchableOpacity,
+    Alert, // replace a View with this to make the entire view clickable
     // import any other needed React components here
 } from "react-native";
 import { Text, View } from './Themed';
@@ -18,23 +19,37 @@ import UserIcon from './UserIcon';
 import { Users } from '../data/Users2';
 import FullWidthImage from './FullWidthImage';
 import { ReloadInstructions } from 'react-native/Libraries/NewAppScreen';
+import { TextInput } from 'react-native-gesture-handler';
 // to use a component from this project, add: import MyComponent from '../components/MyComponent';
+
+const info = () =>
+    Alert.alert(
+        "Oops!",
+        "This prototype only lets you reply to each comment once. Leave this thread and come back to leave a different reply.",
+        [
+            {
+                text: "OK",
+                style: "cancel"
+            }
+        ]
+    );
+
+const blank = () =>
+    Alert.alert(
+        "Oops!",
+        "You can't leave a blank comment!",
+        [
+            {
+                text: "OK",
+                style: "cancel"
+            }
+        ]
+    );
+
 
 
 // see types.tsx or the doc for the data types of the props; let me know if you need to change them
 export default function CommentCard({ comment, navigation }: CommentProps) {
-    const [upvoted, setUpvoted] = useState(comment.upvoted);
-    const [downvoted, setDownvoted] = useState(comment.downvoted);
-    const [upvotes, setUpvotes] = useState(comment.upvotes);
-    const [downvotes, setDownvotes] = useState(comment.downvotes);
-    const [upColor, setUpColor] = useState(Colors.artally.basicDark);
-    const [downColor, setDownColor] = useState(Colors.artally.basicDark);
-
-    /*
-    useEffect(() => {
-    });
-    */
-
     let user: User = Users.nifty_salamander;
     if (comment.user == "izipizi") {
         user = Users.izipizi;
@@ -44,12 +59,47 @@ export default function CommentCard({ comment, navigation }: CommentProps) {
         user = Users.cityowls;
     }
 
+    const [upvoted, setUpvoted] = useState(comment.upvoted);
+    const [downvoted, setDownvoted] = useState(comment.downvoted);
+    const [upvotes, setUpvotes] = useState(comment.upvotes);
+    const [downvotes, setDownvotes] = useState(comment.downvotes);
+    const [upColor, setUpColor] = useState(Colors.artally.basicDark);
+    const [downColor, setDownColor] = useState(Colors.artally.basicDark);
 
-    let op;
+
+    const [upvotedReply, setUpvotedReply] = useState(false);
+    const [downvotedReply, setDownvotedReply] = useState(false);
+    const [upvotesReply, setUpvotesReply] = useState(0);
+    const [downvotesReply, setDownvotesReply] = useState(0);
+    const [upColorReply, setUpColorReply] = useState(Colors.artally.basicDark);
+    const [downColorReply, setDownColorReply] = useState(Colors.artally.basicDark);
+
+    const defaultReplyText = "@" + user.username + " ";
+
+    const [myReplyText, setMyReplyText] = useState(defaultReplyText);
+    const [haveReplied, setHaveReplied] = useState(false);
+    const [showReplyForm, setShowReplyForm] = useState(false);
+
+    /*
+    useEffect(() => {
+    });
+    */
+
+
+    let op: any;
     if (comment.op) {
         op = (
             <View style={styles.op}>
                 <Text style={styles.opText}>Original poster</Text>
+            </View>
+        );
+    }
+
+    let img: any;
+    if (comment.hasImage) {
+        img = (
+            <View style={styles.right}>
+                <FullWidthImage source={comment.image} size="reply" />
             </View>
         );
     }
@@ -84,20 +134,120 @@ export default function CommentCard({ comment, navigation }: CommentProps) {
         <Ionicons name="chevron-down" size={18} color={downColor} />
     </TouchableOpacity>
 
+    let upvoteReply = <TouchableOpacity onPress={() => {
+        if (upvotedReply) {
+            setUpvotedReply(false);
+            setUpvotesReply(upvotesReply - 1);
+            setUpColorReply(Colors.artally.basicDark);
+        } else {
+            setUpvotedReply(true);
+            setUpvotesReply(upvotesReply + 1);
+            setUpColorReply(Colors.artally.action);
+        }
+    }}>
+        <Ionicons name="chevron-up" size={18} color={upColorReply} />
+    </TouchableOpacity>
 
-    let img;
-    if (comment.hasImage) {
-        img = (
-            <View style={styles.right}>
-                <FullWidthImage source={comment.image} size="reply" />
+
+    let downvoteReply = <TouchableOpacity onPress={() => {
+        if (downvotedReply) {
+            setDownvotedReply(false);
+            setDownvotesReply(downvotesReply - 1);
+            setDownColorReply(Colors.artally.basicDark);
+        } else {
+            setDownvotedReply(true);
+            setDownvotesReply(downvotesReply + 1);
+            setDownColorReply(Colors.artally.alert);
+        }
+    }}>
+        <Ionicons name="chevron-down" size={18} color={downColorReply} />
+    </TouchableOpacity>
+
+
+
+
+    let replyButton = <TouchableOpacity onPress={() => {
+        if (haveReplied) {
+            info();
+        } else {
+            setShowReplyForm(true);
+        }
+    }}>
+        <Ionicons name="chevron-down" size={18} color={downColor} />
+    </TouchableOpacity>
+
+    let myReply = (
+        <View style={styles.reply}>
+            <View style={styles.container}>
+                <UserIcon user={Users.nifty_salamander} size={"small"} navigation={navigation} />
+                <View style={styles.body}>
+                    <View style={styles.row}>
+                        <Text style={styles.username}>nifty_salamander</Text>
+                        {op}
+                        <Text style={styles.timestamp}>0s</Text>
+                    </View>
+                    <Text style={styles.text}>{myReplyText}</Text>
+                </View>
+                <View style={styles.buttons}>
+                    <View style={styles.votes}>
+                        <Text style={styles.text}>{upvotesReply}</Text>
+                        {upvoteReply}
+                    </View>
+                    <View style={styles.votes}>
+                        <Text style={styles.text}>{downvotesReply}</Text>
+                        {downvoteReply}
+                    </View>
+                    <TouchableOpacity style={styles.votes} onPress={() => info()}>
+                        {/*<Ionicons name="at-outline" size={18} color={Colors.artally.tag} />*/}
+                        <Text style={styles.replyText}>Reply</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
-        );
+        </View>
+    );
+
+
+    let replyForm = (
+        <View style={styles2.reply}>
+            <View style={styles2.container}>
+                <UserIcon user={Users.nifty_salamander} size={"small"} navigation={navigation} />
+                <View style={styles2.body}>
+                    <Text style={styles2.username}>nifty_salamander</Text>
+                    <View style={styles2.bottomRow}>
+                        <TextInput
+                            style={styles2.textInput}
+                            onChangeText={(myReplyText) => setMyReplyText(myReplyText)}
+                            onSubmitEditing={() => submitReply()}
+                            value={myReplyText} // was "text"
+                            placeholder={"Reply to " + user.username + "..."}
+                            placeholderTextColor={Colors.artally.basicMidLight}
+                        />
+                        <TouchableOpacity onPress={() => submitReply()}>
+                            <Ionicons name="send-outline" size={25} color={Colors.artally.action} />
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles2.buttons}>
+                        <Ionicons name="camera-outline" size={25} color={Colors.artally.action} />
+                        <Ionicons name="image-outline" size={25} color={Colors.artally.action} />
+                        <Ionicons name="happy-outline" size={25} color={Colors.artally.action} />
+                    </View>
+
+                </View>
+            </View>
+        </View>
+    );
+
+    const submitReply = () => {
+        if (myReplyText.length == 0) {
+            blank();
+        } else {
+            setHaveReplied(true)
+            setShowReplyForm(false);
+        }
     }
 
 
-
     let commentStyle = comment.topLevel ? styles.none : styles.reply;
-
     return (
         <View style={commentStyle}>
             <View style={styles.container}>
@@ -119,13 +269,21 @@ export default function CommentCard({ comment, navigation }: CommentProps) {
                         <Text style={styles.text}>{downvotes}</Text>
                         {downvote}
                     </View>
-                    <TouchableOpacity style={styles.votes}>
+                    <TouchableOpacity style={styles.votes} onPress={() => {
+                        if (haveReplied) {
+                            info();
+                        } else {
+                            setShowReplyForm(true);
+                        }
+                    }}>
                         {/*<Ionicons name="at-outline" size={18} color={Colors.artally.tag} />*/}
                         <Text style={styles.replyText}>Reply</Text>
                     </TouchableOpacity>
                 </View>
             </View>
             {img}
+            {haveReplied ? myReply : null}
+            {showReplyForm ? replyForm : null}
         </View>
     );
 }
@@ -217,4 +375,64 @@ const styles = StyleSheet.create({
         color: Colors.artally.basicMid,
         alignSelf: "center",
     }
+});
+
+
+const styles2 = StyleSheet.create({
+    body: {
+        flex: 15,
+    },
+    text: {
+        fontSize: Layout.textMid,
+        fontWeight: 'normal',
+        marginHorizontal: Layout.gapSmall,
+        color: Colors.artally.basicDark,
+    },
+    username: {
+        fontSize: Layout.textMid,
+        fontWeight: 'bold',
+        marginHorizontal: Layout.gapSmall,
+        color: Colors.artally.basicDark,
+    },
+    container: {
+        flexDirection: "row",
+        justifyContent: "flex-start",
+        alignItems: "flex-start",
+        marginVertical: Layout.gapSmall,
+        marginHorizontal: Layout.gapLarge,
+        backgroundColor: Colors.artally.white,
+    },
+    textInput: {
+        borderColor: Colors.artally.basicMidLight,
+        borderRadius: Layout.radiusLarge,
+        borderWidth: 1,
+        fontSize: Layout.textMid,
+        color: Colors.artally.basicDark,
+        padding: Layout.gapSmall,
+        marginHorizontal: Layout.gapSmall,
+        width: "95%"
+    },
+    bottomRow: {
+        flexDirection: "row",
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginHorizontal: Layout.gapLarge,
+        marginTop: Layout.gapSmall,
+    },
+    buttons: {
+        flexDirection: "row",
+        alignItems: 'flex-start',
+        justifyContent: 'flex-start',
+        marginHorizontal: Layout.gapLarge,
+    },
+    reply: {
+        marginRight: Layout.gapSmall,
+        marginLeft: Layout.gapLarge,
+        paddingLeft: Layout.gapLarge,
+        borderLeftWidth: 1,
+        borderColor: Colors.artally.basicLight,
+    },
+    none: {
+
+    },
 });

@@ -35,10 +35,10 @@ export default function ResultsUsersScreen({ navigation }: SearchScreenProps) {
             </View>
             <ScrollView>
                 <TouchableOpacity style={styles.profile} onPress={() => navigation.navigate("Profile", saturnoProps)}>
-                    <ProfileHeader user={Users.saturno_22} navigation={navigation} mine={false} />
+                    <ProfileHeader user={Users.saturno_22} navigation={navigation} mine={false} showBio={false}/>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.profile} onPress={() => navigation.navigate("Profile", cityowlsProps)}>
-                    <ProfileHeader user={Users.cityowls} navigation={navigation} mine={false} />
+                    <ProfileHeader user={Users.cityowls} navigation={navigation} mine={false} showBio={false}/>
                 </TouchableOpacity>
             </ScrollView>
             {/* <Feed

@@ -128,6 +128,7 @@ export type MyComponentProps = {
 export type ProfileHeaderProps = {
   user: User;
   mine: boolean;
+  showBio: boolean;
   navigation: any;
 }
 
@@ -242,6 +243,7 @@ export type MessageProps = {
 }
 
 export type CommentFormProps = {
+  reply: boolean;
   navigation: any;
 }
 

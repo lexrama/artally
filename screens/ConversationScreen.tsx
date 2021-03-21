@@ -34,7 +34,8 @@ export default function ConversationScreen({ navigation }: ConversationScreenPro
           style={styles.textInput}
           onChangeText={(inputText) => onChangeMessageText(inputText)}
           value={messageText} // was "text"
-          placeholder="Type a message..."
+          placeholder="Send a message..."
+          placeholderTextColor={Colors.artally.basicMidLight}
         />
         <Ionicons name="send-outline" size={25} color={Colors.artally.action} />
       </View>
